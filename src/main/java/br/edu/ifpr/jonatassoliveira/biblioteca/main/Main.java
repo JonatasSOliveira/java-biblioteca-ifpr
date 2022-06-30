@@ -4,7 +4,7 @@
  */
 package br.edu.ifpr.jonatassoliveira.biblioteca.main;
 
-import br.edu.ifpr.jonatassoliveira.biblioteca.telas.Desktop;
+import br.edu.ifpr.jonatassoliveira.biblioteca.visoes.InicioUI;
 
 /**
  *
@@ -12,7 +12,7 @@ import br.edu.ifpr.jonatassoliveira.biblioteca.telas.Desktop;
  */
 public class Main {
     public static void main(String[] args) {
-        Desktop desktop = new Desktop();
-        desktop.setVisible(true);
+        InicioUI inicio = new InicioUI();
+        inicio.setVisible(true);
     }
 }

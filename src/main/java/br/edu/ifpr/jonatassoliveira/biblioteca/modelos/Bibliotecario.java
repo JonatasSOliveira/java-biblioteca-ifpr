@@ -2,15 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package br.edu.ifpr.jonatassoliveira.biblioteca.entidades;
+package br.edu.ifpr.jonatassoliveira.biblioteca.modelos;
 
 /**
  *
  * @author Aluno
  */
-public class Armario {
+public class Bibliotecario extends Pessoa {
 
-    private String numero;
-    private boolean ativo;
-    private String observacoes;
+    private String siape;
 }
