@@ -70,6 +70,11 @@ public class InicioUI extends javax.swing.JFrame {
         });
 
         jButton2.setText("EMPRESTAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelAlunoLayout = new javax.swing.GroupLayout(panelAluno);
         panelAluno.setLayout(panelAlunoLayout);
@@ -123,8 +128,16 @@ public class InicioUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        DevolucaoUI devolucaoUI = new DevolucaoUI();
+        devolucaoUI.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        EmprestimoUI emprestimoUI = new EmprestimoUI();
+        emprestimoUI.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
