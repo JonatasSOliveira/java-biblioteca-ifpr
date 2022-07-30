@@ -13,12 +13,15 @@ public class Armario {
     private String numero;
     private boolean ativo;
     private String observacoes;
-    
-    
+
     public Armario() {
-        
+
     }
-    
+
+    public Armario(String numero) {
+        this.numero = numero;
+    }
+
     public Armario(String numero, boolean ativo, String observacoes) {
         this.numero = numero;
         this.ativo = ativo;
@@ -48,6 +51,5 @@ public class Armario {
     public void setObservacoes(String observacoes) {
         this.observacoes = observacoes;
     }
-    
-    
+
 }

@@ -9,11 +9,16 @@ package modelos;
  * @author Aluno
  */
 public class Estudante extends Pessoa {
-
     private String ra;
+    private String senha;
 
     public Estudante() {
     }
+    
+    public Estudante(String ra, String senha) {
+        this.ra = ra;
+        this.senha = senha;
+    }    
 
     public Estudante(String ra) {
         this.ra = ra;
