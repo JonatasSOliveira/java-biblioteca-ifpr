@@ -37,6 +37,8 @@ public class DevolucaoUI extends javax.swing.JInternalFrame {
         btnCancel = new javax.swing.JButton();
         btnAcessar = new javax.swing.JButton();
 
+        setTitle("Devolução");
+
         nArmarioLabel.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         nArmarioLabel.setText("Nº Armario:");
 

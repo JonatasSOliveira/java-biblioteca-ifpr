@@ -13,10 +13,27 @@ import modelos.Estudante;
 public class EmprestimoControle {
 
     public static final int COD_EMPRESTADO_COM_SUCESSO = 1;
+    public static final int COD_ARMARIO_INDISPONIVEL = 2;
+    public static final int COD_ESTUDANTE_EMPRESTIMO_PENDENTE = 3;
 
+//    TODO: Fazer salvar o emprestimo, associando a chave ao usuário
     public static int emprestar(String ra, String senha, String numeroArmario) {
-        Estudante estudante = EstudanteControle.buscaEstudante(ra, senha);
         boolean armarioDisponivel = EstudanteArmarioControle.armarioEstaDisponivel(numeroArmario);
+
+        if (!armarioDisponivel) {
+            return EmprestimoControle.COD_ARMARIO_INDISPONIVEL;
+        }
+
+        Estudante estudante = EstudanteControle.buscaEstudante(ra, senha);
+        int pendenciaEstudante = EstudanteArmarioControle.verificarPendenciasEstudante(estudante);
+
+        switch (pendenciaEstudante) {
+            case EstudanteArmarioControle.COD_ESTUDANTE_EMPRESTIMO_PENDENTE:
+                return EmprestimoControle.COD_ESTUDANTE_EMPRESTIMO_PENDENTE;
+
+        }
+        
+//        NOTE: Aqui deverá ter a função de salvar antes do retorno
 
         return EmprestimoControle.COD_EMPRESTADO_COM_SUCESSO;
     }

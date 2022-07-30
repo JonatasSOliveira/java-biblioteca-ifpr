@@ -18,6 +18,8 @@ public class DesktopUI extends javax.swing.JFrame {
      * Creates new form DesktopUI
      */
     public DesktopUI() {
+        setResizable(false);
+        setUndecorated(true);
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
@@ -104,7 +106,7 @@ public class DesktopUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(desktopPane))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,6 +118,8 @@ public class DesktopUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void devolverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devolverButtonActionPerformed
+        this.desktopPane.removeAll();
+        repaint();
         DevolucaoUI devolucaoUI = new DevolucaoUI();
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -129,7 +133,8 @@ public class DesktopUI extends javax.swing.JFrame {
     }//GEN-LAST:event_devolverButtonActionPerformed
 
     private void emprestarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emprestarButtonActionPerformed
-
+        this.desktopPane.removeAll();
+        repaint();
         EmprestimoUI emprestimoUI = new EmprestimoUI();
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -148,47 +153,6 @@ public class DesktopUI extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_loginButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DesktopUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DesktopUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DesktopUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DesktopUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DesktopUI().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;

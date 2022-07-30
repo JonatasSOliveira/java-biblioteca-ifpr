@@ -4,6 +4,7 @@
  */
 package visoes;
 
+import controles.EmprestimoControle;
 import controles.LoginControle;
 import javax.swing.JOptionPane;
 
@@ -37,7 +38,9 @@ public class EmprestimoUI extends javax.swing.JInternalFrame {
         nArmarioLabel = new javax.swing.JLabel();
         nArmarioInput = new javax.swing.JTextField();
         btnCancel = new javax.swing.JButton();
-        btnAcessar = new javax.swing.JButton();
+        btnEmprestar = new javax.swing.JButton();
+
+        setTitle("Empréstimo");
 
         raLabel.setText("RA");
 
@@ -74,14 +77,14 @@ public class EmprestimoUI extends javax.swing.JInternalFrame {
             }
         });
 
-        btnAcessar.setBackground(new java.awt.Color(0, 153, 0));
-        btnAcessar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        btnAcessar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAcessar.setText("EMPRESTAR");
-        btnAcessar.setBorder(null);
-        btnAcessar.addActionListener(new java.awt.event.ActionListener() {
+        btnEmprestar.setBackground(new java.awt.Color(0, 153, 0));
+        btnEmprestar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        btnEmprestar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEmprestar.setText("EMPRESTAR");
+        btnEmprestar.setBorder(null);
+        btnEmprestar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAcessarActionPerformed(evt);
+                btnEmprestarActionPerformed(evt);
             }
         });
 
@@ -107,7 +110,7 @@ public class EmprestimoUI extends javax.swing.JInternalFrame {
                     .addGroup(panelLayout.createSequentialGroup()
                         .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(btnAcessar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnEmprestar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(24, 24, 24))
         );
         panelLayout.setVerticalGroup(
@@ -130,7 +133,7 @@ public class EmprestimoUI extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAcessar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEmprestar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(75, Short.MAX_VALUE))
         );
 
@@ -148,18 +151,26 @@ public class EmprestimoUI extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessarActionPerformed
-        String login = raInput.getText();
+    private void btnEmprestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmprestarActionPerformed
+        String ra = raInput.getText();
         String senha = new String(senhaInput.getPassword());
+        String numeroArmario = nArmarioInput.getText();
 
-        int respostaAutenticacao = LoginControle.autenticar(login, senha);
+        int resposta = EmprestimoControle.emprestar(ra, senha, numeroArmario);
+        switch (resposta) {
+            case EmprestimoControle.COD_EMPRESTADO_COM_SUCESSO:
+                JOptionPane.showMessageDialog(null, "Chave emprestadada com sucesso");
+                break;
 
-        if (respostaAutenticacao == LoginControle.COD_LOGIN_INVALIDO) {
-            JOptionPane.showMessageDialog(rootPane, "Login Inválido");
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Login Válido");
+            case EmprestimoControle.COD_ARMARIO_INDISPONIVEL:
+                JOptionPane.showMessageDialog(null, "Chave de armário indisponível. Verifique a numeração da chave");
+                break;
+
+            case EmprestimoControle.COD_ESTUDANTE_EMPRESTIMO_PENDENTE:
+                JOptionPane.showMessageDialog(null, "Esse estudante tem pendências de emprestimo, não é possível emprestar!");
+
         }
-    }//GEN-LAST:event_btnAcessarActionPerformed
+    }//GEN-LAST:event_btnEmprestarActionPerformed
 
     private void senhaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaInputActionPerformed
         // TODO add your handling code here:
@@ -177,8 +188,8 @@ public class EmprestimoUI extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAcessar;
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnEmprestar;
     private javax.swing.JTextField nArmarioInput;
     private javax.swing.JLabel nArmarioLabel;
     private javax.swing.JPanel panel;
