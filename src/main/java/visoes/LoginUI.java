@@ -125,24 +125,24 @@ public class LoginUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        InicioUI inicioUI = new InicioUI();
+        inicioUI.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCancelActionPerformed
+
     private void btnAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessarActionPerformed
         String login = inputLogin.getText();
         String senha = new String(inputSenha.getPassword());
-        
+
         int respostaAutenticacao = LoginControle.autenticar(login, senha);
-        
+
         if (respostaAutenticacao == LoginControle.COD_LOGIN_INVALIDO) {
             JOptionPane.showMessageDialog(rootPane, "Login Inválido");
         } else {
             JOptionPane.showMessageDialog(rootPane, "Login Válido");
         }
     }//GEN-LAST:event_btnAcessarActionPerformed
-
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        InicioUI inicioUI = new InicioUI();
-        inicioUI.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnCancelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
