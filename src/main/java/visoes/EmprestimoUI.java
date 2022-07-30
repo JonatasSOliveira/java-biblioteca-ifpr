@@ -77,7 +77,7 @@ public class EmprestimoUI extends javax.swing.JInternalFrame {
         btnAcessar.setBackground(new java.awt.Color(0, 153, 0));
         btnAcessar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnAcessar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAcessar.setText("ACESSAR");
+        btnAcessar.setText("EMPRESTAR");
         btnAcessar.setBorder(null);
         btnAcessar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

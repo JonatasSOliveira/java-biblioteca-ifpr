@@ -5,6 +5,7 @@
 package visoes;
 
 import controles.DevolucaoControler;
+import static controles.DevolucaoControler.COD_ARMARIO_INEXISTENTE;
 import controles.LoginControle;
 import javax.swing.JOptionPane;
 
@@ -61,7 +62,7 @@ public class DevolucaoUI extends javax.swing.JInternalFrame {
         btnAcessar.setBackground(new java.awt.Color(0, 153, 0));
         btnAcessar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnAcessar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAcessar.setText("ACESSAR");
+        btnAcessar.setText("DEVOLVER");
         btnAcessar.setBorder(null);
         btnAcessar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,7 +131,7 @@ public class DevolucaoUI extends javax.swing.JInternalFrame {
         int devolucao = DevolucaoControler.devolver(nArmario);
         switch (devolucao) {
             case DevolucaoControler.COD_ARMARIO_JA_DEVOLVIDO -> JOptionPane.showMessageDialog(null, "Armario já devolvido!");
-            case DevolucaoControler.COD_ARMARIO_NAO_ENCONTRADO -> JOptionPane.showMessageDialog(null, "Armario Inexistente ou não encontrado, caso realmente exista contate a secretaria");
+            case DevolucaoControler.COD_ARMARIO_INEXISTENTE -> JOptionPane.showMessageDialog(null, "Armario Inexistente ou não encontrado, caso realmente exista contate a secretaria");
             case DevolucaoControler.COD_DEVOLVIDO_COM_SUCESSO -> JOptionPane.showMessageDialog(null, "Armario devolvido!");
         }
     }//GEN-LAST:event_btnAcessarActionPerformed

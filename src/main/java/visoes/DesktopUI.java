@@ -20,18 +20,6 @@ public class DesktopUI extends javax.swing.JFrame {
     public DesktopUI() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-        InicioUI inicioUI = new InicioUI();
-        
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        Dimension inicioUISize = inicioUI.getSize();
-        int xLocation = (screenSize.width - inicioUISize.width) / 2;
-        int yLocation = (screenSize.height - inicioUISize.height) / 2;
-        
-        this.desktopPane.add(inicioUI);
-        inicioUI.setLocation(xLocation, yLocation);
-        inicioUI.setVisible(true);
-        
     }
 
     /**
@@ -44,34 +32,121 @@ public class DesktopUI extends javax.swing.JFrame {
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
+        jPanel1 = new javax.swing.JPanel();
+        devolverButton = new javax.swing.JButton();
+        emprestarButton = new javax.swing.JButton();
+        loginButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        setSize(new java.awt.Dimension(1024, 768));
 
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 1038, Short.MAX_VALUE)
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 468, Short.MAX_VALUE)
+        );
+
+        devolverButton.setText("DEVOLVER");
+        devolverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                devolverButtonActionPerformed(evt);
+            }
+        });
+
+        emprestarButton.setText("EMPRESTAR");
+        emprestarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emprestarButtonActionPerformed(evt);
+            }
+        });
+
+        loginButton.setText("LOGIN");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(devolverButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(emprestarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(emprestarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(devolverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(desktopPane)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void devolverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devolverButtonActionPerformed
+        DevolucaoUI devolucaoUI = new DevolucaoUI();
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension inicioUISize = devolucaoUI.getSize();
+        int xLocation = (screenSize.width - inicioUISize.width) / 2;
+        int yLocation = (screenSize.height - inicioUISize.height) / 2;
+
+        this.desktopPane.add(devolucaoUI);
+        devolucaoUI.setLocation(xLocation, yLocation);
+        devolucaoUI.setVisible(true);
+    }//GEN-LAST:event_devolverButtonActionPerformed
+
+    private void emprestarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emprestarButtonActionPerformed
+
+        EmprestimoUI emprestimoUI = new EmprestimoUI();
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension inicioUISize = emprestimoUI.getSize();
+        int xLocation = (screenSize.width - inicioUISize.width) / 2;
+        int yLocation = (screenSize.height - inicioUISize.height) / 2;
+
+        this.desktopPane.add(emprestimoUI);
+        emprestimoUI.setLocation(xLocation, yLocation);
+        emprestimoUI.setVisible(true);
+    }//GEN-LAST:event_emprestarButtonActionPerformed
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        LoginUI loginUI = new LoginUI();
+        loginUI.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,5 +192,9 @@ public class DesktopUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JButton devolverButton;
+    private javax.swing.JButton emprestarButton;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton loginButton;
     // End of variables declaration//GEN-END:variables
 }
