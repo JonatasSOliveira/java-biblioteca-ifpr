@@ -4,6 +4,7 @@
  */
 package visoes;
 
+import controles.DevolucaoControler;
 import controles.LoginControle;
 import javax.swing.JOptionPane;
 
@@ -125,9 +126,15 @@ public class DevolucaoUI extends javax.swing.JInternalFrame {
 
     private void btnAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessarActionPerformed
         String nArmario = nArmarioInput.getText();
-        
+
+        int devolucao = DevolucaoControler.devolver(nArmario);
+        switch (devolucao) {
+            case DevolucaoControler.COD_ARMARIO_JA_DEVOLVIDO -> JOptionPane.showMessageDialog(null, "Armario já devolvido!");
+            case DevolucaoControler.COD_ARMARIO_NAO_ENCONTRADO -> JOptionPane.showMessageDialog(null, "Armario Inexistente ou não encontrado, caso realmente exista contate a secretaria");
+            case DevolucaoControler.COD_DEVOLVIDO_COM_SUCESSO -> JOptionPane.showMessageDialog(null, "Armario devolvido!");
+        }
     }//GEN-LAST:event_btnAcessarActionPerformed
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAcessar;
