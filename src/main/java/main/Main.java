@@ -4,7 +4,7 @@
  */
 package main;
 
-import visoes.InicioUI;
+import visoes.DesktopUI;
 
 /**
  *
@@ -12,7 +12,7 @@ import visoes.InicioUI;
  */
 public class Main {
     public static void main(String[] args) {
-        InicioUI inicio = new InicioUI();
+        DesktopUI inicio = new DesktopUI();
         inicio.setVisible(true);
     }
 }

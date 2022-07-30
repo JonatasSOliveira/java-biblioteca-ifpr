@@ -4,6 +4,10 @@
  */
 package visoes;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Aluno
@@ -15,6 +19,19 @@ public class DesktopUI extends javax.swing.JFrame {
      */
     public DesktopUI() {
         initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        InicioUI inicioUI = new InicioUI();
+        
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension inicioUISize = inicioUI.getSize();
+        int xLocation = (screenSize.width - inicioUISize.width) / 2;
+        int yLocation = (screenSize.height - inicioUISize.height) / 2;
+        
+        this.desktopPane.add(inicioUI);
+        inicioUI.setLocation(xLocation, yLocation);
+        inicioUI.setVisible(true);
+        
     }
 
     /**
@@ -26,17 +43,31 @@ public class DesktopUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        desktopPane = new javax.swing.JDesktopPane();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
+        desktopPane.setLayout(desktopPaneLayout);
+        desktopPaneLayout.setHorizontalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        desktopPaneLayout.setVerticalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(desktopPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(desktopPane)
         );
 
         pack();
@@ -68,6 +99,13 @@ public class DesktopUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(DesktopUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -78,5 +116,6 @@ public class DesktopUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane desktopPane;
     // End of variables declaration//GEN-END:variables
 }
