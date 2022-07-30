@@ -16,7 +16,7 @@ public class EmprestimoControle {
 
     public static int emprestar(String ra, String senha, String numeroArmario) {
         Estudante estudante = EstudanteControle.buscaEstudante(ra, senha);
-        int estaDispo
+        boolean armarioDisponivel = EstudanteArmarioControle.armarioEstaDisponivel(numeroArmario);
 
         return EmprestimoControle.COD_EMPRESTADO_COM_SUCESSO;
     }
