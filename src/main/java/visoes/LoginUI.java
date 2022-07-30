@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package br.edu.ifpr.jonatassoliveira.biblioteca.visoes;
+package visoes;
 
-import br.edu.ifpr.jonatassoliveira.biblioteca.controles.LoginControle;
+import controles.LoginControle;
 import javax.swing.JOptionPane;
 
 /**
