@@ -11,4 +11,18 @@ package modelos;
 public class Bibliotecario extends Pessoa {
 
     private String siape;
+
+    public Bibliotecario(String siape) {
+        this.siape = siape;
+    }
+
+    public String getSiape() {
+        return siape;
+    }
+
+    public void setSiape(String siape) {
+        this.siape = siape;
+    }
+    
+    
 }
