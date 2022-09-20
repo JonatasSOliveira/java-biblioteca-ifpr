@@ -4,6 +4,8 @@
  */
 package main;
 
+import conexao.HibernateUtil;
+import org.hibernate.Session;
 import visoes.DesktopUI;
 
 /**
@@ -12,6 +14,8 @@ import visoes.DesktopUI;
  */
 public class Main {
     public static void main(String[] args) {
+        Session sessao = HibernateUtil.getSession();
+        sessao.beginTransaction();
         DesktopUI inicio = new DesktopUI();
         inicio.setVisible(true);
     }

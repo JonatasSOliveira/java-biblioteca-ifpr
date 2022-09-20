@@ -1,17 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelos;
 
-/**
- *
- * @author Aluno
- */
+import javax.persistence.*;
+
+@Entity
+@Table(name = "armario")
 public class Armario {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", unique = true, nullable = false)
+    private Long id;
+
+    @Column(name = "numero", unique = true, nullable = false)
     private String numero;
+
+    @Column(name = "ativo", nullable = false)
     private boolean ativo;
+
+    @Column(name = "observacoes")
     private String observacoes;
 
     public Armario() {

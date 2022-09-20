@@ -4,21 +4,45 @@
  */
 package modelos;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.*;
 import java.util.Date;
 
-/**
- *
- * @author Aluno
- */
+@Entity
+@Table(name = "pessoa")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Pessoa {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", unique = true, nullable = false)
+    private Long id;
+
+    @Column(name = "name", nullable = false)
     private String nome;
+
+    @Column(name = "email", unique = true)
     private String email;
+
+    @Column(name = "telefone")
     private String telefone;
+
+    @Column(name = "senha", nullable = false)
     private String senha;
+
+    @Column(name = "ativo", nullable = false)
     private boolean ativo;
-    private Date dataAtualizacao;
+
+    @Column(name = "data_criacao", nullable = false)
+    @CreationTimestamp
     private Date dataCriacao;
+
+    @Column(name = "data_atualizacao", nullable = false)
+    @UpdateTimestamp
+    private Date dataAtualizacao;
+
 
     public Pessoa() {
     }
@@ -28,8 +52,8 @@ public class Pessoa {
         this.senha = senha;
         this.dataCriacao = dataCriacao;
     }
-    
-    
+
+
     public Pessoa(String nome, String email, String telefone, String senha, boolean ativo, Date dataAtualizacao, Date dataCriacao) {
         this.nome = nome;
         this.email = email;

@@ -4,17 +4,33 @@
  */
 package modelos;
 
+import org.hibernate.annotations.CreationTimestamp;
+
+import javax.persistence.*;
 import java.util.Date;
 
-/**
- *
- * @author Aluno
- */
+@Entity
+@Table(name = "reserva")
 public class Reserva {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", unique = true, nullable = false)
+    private Long id;
+
+    @Column(name = "data_hora_emprestimo", nullable = false)
+    @CreationTimestamp
     private Date dataHoraEmprestimo;
+
+    @Column(name = "data_hora_devolucao", nullable = false)
     private Date dataHoraDevolucao;
+
+    @ManyToOne
+    @JoinColumn(name = "id_armario")
     private Armario armario;
+
+    @ManyToOne
+    @JoinColumn(name = "id_pessoa")
     private Pessoa pessoa;
 
     public Reserva() {
@@ -26,7 +42,7 @@ public class Reserva {
         this.armario = armario;
         this.pessoa = pessoa;
     }
-    
+
     public Date getDataHoraEmprestimo() {
         return dataHoraEmprestimo;
     }
@@ -58,7 +74,5 @@ public class Reserva {
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
-    
-    
-    
+
 }

@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="biblioteca" />
+        <module name="java-biblioteca-ifpr" />
       </profile>
     </annotationProcessing>
   </component>
