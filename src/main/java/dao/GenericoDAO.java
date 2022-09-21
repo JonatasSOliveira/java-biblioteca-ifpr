@@ -1,16 +1,17 @@
 package dao;
 
+import conexao.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
 
 public abstract class GenericoDAO<T> {
-  private Session sessao;
+  private final Session sessao;
 
   public GenericoDAO() {
     this.sessao = HibernateUtil.getSession();
   }
 
-  protected getSessao() {
+  protected Session getSessao() { 
     return this.sessao;
   }
   
