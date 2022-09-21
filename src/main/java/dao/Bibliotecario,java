@@ -1,0 +1,73 @@
+package dao;
+
+import java.util.List;
+import modelos.Bibliotecario;
+
+public class BibliotecarioDAO extends GenericoDAO<Bibliotecario> {
+    public BibliotecarioDAO() {
+        super();
+    }
+
+    @Override
+    public List<Bibliotecario> buscarTodos() {
+        List<Bibliotecario> Bibliotecarios = null;
+        
+        try {
+            getSessao().beginTransaction();
+            Bibliotecarios = (List<Bibliotecario>) getSessao().createQuery("from Bibliotecario").list();
+            getSessao().getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return Bibliotecarios;        
+    }
+
+    @Override
+    public Bibliotecario buscarPorId(Long id) {
+        Bibliotecario Bibliotecario = null;
+        
+        try {
+            getSessao().beginTransaction();
+            Bibliotecario = (Bibliotecario) getSessao().get(Bibliotecario.class, id);
+            getSessao().getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return Bibliotecario;
+    }
+    
+    @Override
+    public void criar(Bibliotecario modelo) {
+        try {
+            getSessao().beginTransaction();
+            getSessao().persist(modelo);
+            getSessao().getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } 
+    }
+    
+    @Override
+    public void atualizar(Bibliotecario modelo) {
+        try {
+            getSessao().beginTransaction();
+            getSessao().update(modelo);
+            getSessao().getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } 
+    }       
+
+    @Override
+    public void excluir(Bibliotecario modelo) {
+        try {
+            getSessao().beginTransaction();
+            getSessao().delete(modelo);
+            getSessao().getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } 
+    } 
+}

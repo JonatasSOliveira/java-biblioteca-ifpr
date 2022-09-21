@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelos;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "reserva")
@@ -24,6 +21,14 @@ public class Reserva {
 
     @Column(name = "data_hora_devolucao", nullable = false)
     private Date dataHoraDevolucao;
+    
+    @Column(name = "data_criacao", nullable = false)
+    @CreationTimestamp
+    private Date dataCriacao;
+
+    @Column(name = "data_atualizacao", nullable = false)
+    @UpdateTimestamp
+    private Date dataAtualizacao;
 
     @ManyToOne
     @JoinColumn(name = "id_armario")

@@ -1,6 +1,9 @@
 package modelos;
 
+import java.util.Date;
 import javax.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "armario")
@@ -19,6 +22,14 @@ public class Armario {
 
     @Column(name = "observacoes")
     private String observacoes;
+    
+    @Column(name = "data_criacao", nullable = false)
+    @CreationTimestamp
+    private Date dataCriacao;
+
+    @Column(name = "data_atualizacao", nullable = false)
+    @UpdateTimestamp
+    private Date dataAtualizacao;
 
     public Armario() {
 
