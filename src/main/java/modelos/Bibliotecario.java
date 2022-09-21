@@ -13,6 +13,9 @@ public class Bibliotecario extends Pessoa {
     @Column(name = "siapie", nullable = false, unique = true)
     private String siape;
 
+    @Column(name = "login", nullable = false, unique = true)
+    private String login;
+
     public Bibliotecario() {
     }
 

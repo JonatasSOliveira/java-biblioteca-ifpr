@@ -4,7 +4,11 @@
  */
 package visoes;
 
-import controles.LoginControle;
+import controles.BibliotecarioControle;
+import modelos.Bibliotecario;
+import respostas.RespostaGenerica;
+import servicos.BibliotecarioServico;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -135,9 +139,9 @@ public class LoginUI extends javax.swing.JFrame {
         String login = inputLogin.getText();
         String senha = new String(inputSenha.getPassword());
 
-        int respostaAutenticacao = LoginControle.autenticar(login, senha);
+        RespostaGenerica<Bibliotecario> respostaAutenticacao = BibliotecarioControle.autenticar(login, senha);
 
-        if (respostaAutenticacao == LoginControle.COD_LOGIN_INVALIDO) {
+        if (respostaAutenticacao.getCodigoResposta() == BibliotecarioServico.COD_LOGIN_INVALIDO) {
             JOptionPane.showMessageDialog(rootPane, "Login Inválido");
         } else {
             JOptionPane.showMessageDialog(rootPane, "Login Válido");

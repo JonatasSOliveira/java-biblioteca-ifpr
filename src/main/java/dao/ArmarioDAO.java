@@ -10,64 +10,89 @@ public class ArmarioDAO extends GenericoDAO<Armario> {
 
     @Override
     public List<Armario> buscarTodos() {
-        List<Armario> Armarios = null;
+        List<Armario> armarios = null;
         
         try {
             getSessao().beginTransaction();
-            Armarios = (List<Armario>) getSessao().createQuery("from Armario").list();
-            getSessao().getTransaction().commit();
+            armarios = (List<Armario>) getSessao().createQuery("from Armario").list();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            getSessao().getTransaction().commit();
         }
-        
-        return Armarios;        
+
+        return armarios;
     }
 
     @Override
     public Armario buscarPorId(Long id) {
-        Armario Armario = null;
+        Armario armario = null;
         
         try {
             getSessao().beginTransaction();
-            Armario = (Armario) getSessao().get(Armario.class, id);
-            getSessao().getTransaction().commit();
+            armario = (Armario) getSessao().get(Armario.class, id);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            getSessao().getTransaction().commit();
         }
         
-        return Armario;
+        return armario;
     }
     
     @Override
-    public void criar(Armario modelo) {
+    public void criar(Armario armario) {
         try {
             getSessao().beginTransaction();
-            getSessao().persist(modelo);
-            getSessao().getTransaction().commit();
+            getSessao().persist(armario);
         } catch (Exception e) {
             e.printStackTrace();
-        } 
+        } finally {
+            getSessao().getTransaction().commit();
+        }
     }
     
     @Override
-    public void atualizar(Armario modelo) {
+    public void atualizar(Armario armario) {
         try {
             getSessao().beginTransaction();
-            getSessao().update(modelo);
-            getSessao().getTransaction().commit();
+            getSessao().update(armario);
         } catch (Exception e) {
             e.printStackTrace();
-        } 
+        } finally {
+            getSessao().getTransaction().commit();
+        }
     }       
 
     @Override
-    public void excluir(Armario modelo) {
+    public void excluir(Armario armario) {
         try {
             getSessao().beginTransaction();
-            getSessao().delete(modelo);
-            getSessao().getTransaction().commit();
+            getSessao().delete(armario);
         } catch (Exception e) {
             e.printStackTrace();
-        } 
-    } 
+        } finally {
+            getSessao().getTransaction().commit();
+        }
+    }
+
+    public Armario buscarPorNumero(String numero) {
+        Armario armario = null;
+        String query = "select a from Armario a" +
+                " where a.numero = :numero";
+
+        try {
+            getSessao().beginTransaction();
+            armario = (Armario) getSessao()
+                    .createQuery(query)
+                    .setParameter("numero", numero)
+                    .getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            getSessao().getTransaction().commit();
+        }
+
+        return armario;
+    }
 }

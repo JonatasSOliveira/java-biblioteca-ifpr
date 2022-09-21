@@ -4,8 +4,10 @@
  */
 package visoes;
 
-import controles.EmprestimoControle;
-import controles.LoginControle;
+import controles.ReservaControle;
+import respostas.RespostaGenerica;
+import servicos.ReservaServico;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -156,19 +158,23 @@ public class EmprestimoUI extends javax.swing.JInternalFrame {
         String senha = new String(senhaInput.getPassword());
         String numeroArmario = nArmarioInput.getText();
 
-        int resposta = EmprestimoControle.emprestar(ra, senha, numeroArmario);
-        switch (resposta) {
-            case EmprestimoControle.COD_EMPRESTADO_COM_SUCESSO:
+        RespostaGenerica resposta = ReservaControle.emprestar(ra, senha, numeroArmario);
+        switch (resposta.getCodigoResposta()) {
+            case ReservaServico.COD_SUCESSO:
                 JOptionPane.showMessageDialog(null, "Chave emprestadada com sucesso");
                 break;
 
-            case EmprestimoControle.COD_ARMARIO_INDISPONIVEL:
+            case ReservaServico.COD_ARMARIO_INDISPONIVEL:
                 JOptionPane.showMessageDialog(null, "Chave de armário indisponível. Verifique a numeração da chave");
                 break;
 
-            case EmprestimoControle.COD_ESTUDANTE_EMPRESTIMO_PENDENTE:
+            case ReservaServico.COD_ESTUDANTE_EMPRESTIMO_PENDENTE:
                 JOptionPane.showMessageDialog(null, "Esse estudante tem pendências de emprestimo, não é possível emprestar!");
+                break;
 
+            default:
+                JOptionPane.showMessageDialog(null, "Erro: Exceção não tratada");
+                break;
         }
     }//GEN-LAST:event_btnEmprestarActionPerformed
 

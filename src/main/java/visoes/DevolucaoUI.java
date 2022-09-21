@@ -5,8 +5,7 @@
 package visoes;
 
 import controles.DevolucaoControler;
-import static controles.DevolucaoControler.COD_ARMARIO_INEXISTENTE;
-import controles.LoginControle;
+
 import javax.swing.JOptionPane;
 
 /**

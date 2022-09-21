@@ -6,8 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "pessoa")
+@Entity@Table(name = "pessoa")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Pessoa {
 
@@ -43,21 +42,13 @@ public class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String senha, Date dataCriacao) {
-        this.nome = nome;
-        this.senha = senha;
-        this.dataCriacao = dataCriacao;
-    }
-
-
-    public Pessoa(String nome, String email, String telefone, String senha, boolean ativo, Date dataAtualizacao, Date dataCriacao) {
+    public Pessoa(String nome, String email, String telefone, String senha, boolean ativo) {
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.senha = senha;
         this.ativo = ativo;
         this.dataAtualizacao = dataAtualizacao;
-        this.dataCriacao = dataCriacao;
     }
 
     public String getNome() {

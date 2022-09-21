@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name = "estudante")
@@ -26,6 +27,10 @@ public class Estudante extends Pessoa {
         this.ra = ra;
     }
 
+    public Estudante(String nome, String email, String telefone, String ra, String senha, boolean ativo) {
+        super(nome, email, telefone, senha, ativo);
+        this.ra = ra;
+    }
     public String getRa() {
         return ra;
     }

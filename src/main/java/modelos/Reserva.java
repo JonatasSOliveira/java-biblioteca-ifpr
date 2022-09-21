@@ -19,7 +19,7 @@ public class Reserva {
     @CreationTimestamp
     private Date dataHoraEmprestimo;
 
-    @Column(name = "data_hora_devolucao", nullable = false)
+    @Column(name = "data_hora_devolucao")
     private Date dataHoraDevolucao;
     
     @Column(name = "data_criacao", nullable = false)
@@ -35,17 +35,17 @@ public class Reserva {
     private Armario armario;
 
     @ManyToOne
-    @JoinColumn(name = "id_pessoa")
-    private Pessoa pessoa;
+    @JoinColumn(name = "id_estudante")
+    private Estudante estudante;
 
     public Reserva() {
     }
 
-    public Reserva(Date dataHoraEmprestimo, Date dataHoraDevolucao, Armario armario, Pessoa pessoa) {
+    public Reserva(Date dataHoraEmprestimo, Date dataHoraDevolucao, Armario armario, Estudante estudante) {
         this.dataHoraEmprestimo = dataHoraEmprestimo;
         this.dataHoraDevolucao = dataHoraDevolucao;
         this.armario = armario;
-        this.pessoa = pessoa;
+        this.estudante = estudante;
     }
 
     public Date getDataHoraEmprestimo() {
@@ -72,12 +72,12 @@ public class Reserva {
         this.armario = armario;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public Estudante getEstudante() {
+        return estudante;
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setEstudante(Estudante estudante) {
+        this.estudante = estudante;
     }
 
 }
