@@ -15,7 +15,7 @@ public class BibliotecarioDAO extends GenericoDAO<Bibliotecario> {
 
         try {
             getSessao().beginTransaction();
-            bibliotecarios = (List<Bibliotecario>) getSessao().createQuery("from Bibliotecario").list();
+            bibliotecarios = getSessao().createQuery("from Bibliotecario", Bibliotecario.class).list();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -31,7 +31,7 @@ public class BibliotecarioDAO extends GenericoDAO<Bibliotecario> {
 
         try {
             getSessao().beginTransaction();
-            bibliotecario = (Bibliotecario) getSessao().get(Bibliotecario.class, id);
+            bibliotecario = getSessao().get(Bibliotecario.class, id);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -85,8 +85,8 @@ public class BibliotecarioDAO extends GenericoDAO<Bibliotecario> {
 
         try {
             getSessao().beginTransaction();
-            bibliotecario = (Bibliotecario) getSessao()
-                    .createQuery(query)
+            bibliotecario = getSessao()
+                    .createQuery(query, Bibliotecario.class)
                     .setParameter("login", login)
                     .setParameter("senha", senha)
                     .getSingleResult();

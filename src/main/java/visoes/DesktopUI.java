@@ -1,17 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package visoes;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 
-/**
- *
- * @author Aluno
- */
+class Coordenada {
+    int pontoX;
+    int pontoY;
+
+    public Coordenada(int pontoX, int pontoY) {
+        this.pontoX = pontoX;
+        this.pontoY = pontoY;
+    }
+}
+
 public class DesktopUI extends javax.swing.JFrame {
 
     /**
@@ -22,6 +24,16 @@ public class DesktopUI extends javax.swing.JFrame {
         setUndecorated(true);
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+
+
+    private static Coordenada getCentroTela(int larguraJanela, int alturaJanela) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        return new Coordenada(
+                (screenSize.width - larguraJanela) / 2,
+                (screenSize.height - alturaJanela) / 2
+        );
+
     }
 
     /**
@@ -45,14 +57,8 @@ public class DesktopUI extends javax.swing.JFrame {
 
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
-        desktopPaneLayout.setHorizontalGroup(
-            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1038, Short.MAX_VALUE)
-        );
-        desktopPaneLayout.setVerticalGroup(
-            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 468, Short.MAX_VALUE)
-        );
+        desktopPaneLayout.setHorizontalGroup(desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 1038, Short.MAX_VALUE));
+        desktopPaneLayout.setVerticalGroup(desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 468, Short.MAX_VALUE));
 
         devolverButton.setText("DEVOLVER");
         devolverButton.addActionListener(new java.awt.event.ActionListener() {
@@ -77,42 +83,13 @@ public class DesktopUI extends javax.swing.JFrame {
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(devolverButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(emprestarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(emprestarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(devolverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup().addContainerGap().addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING).addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(devolverButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(emprestarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)).addContainerGap()));
+        jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(jPanel1Layout.createSequentialGroup().addGap(35, 35, 35).addComponent(emprestarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE).addGap(41, 41, 41).addComponent(devolverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE).addContainerGap()));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(desktopPane))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup().addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(desktopPane)));
+        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(desktopPane).addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -122,13 +99,14 @@ public class DesktopUI extends javax.swing.JFrame {
         repaint();
         DevolucaoUI devolucaoUI = new DevolucaoUI();
 
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        Dimension inicioUISize = devolucaoUI.getSize();
-        int xLocation = (screenSize.width - inicioUISize.width) / 2;
-        int yLocation = (screenSize.height - inicioUISize.height) / 2;
+        Dimension devolucaoUISize = devolucaoUI.getSize();
+        Coordenada coordenadaCentro = DesktopUI.getCentroTela(
+                devolucaoUISize.width,
+                devolucaoUISize.height
+        );
 
         this.desktopPane.add(devolucaoUI);
-        devolucaoUI.setLocation(xLocation, yLocation);
+        devolucaoUI.setLocation(coordenadaCentro.pontoX, coordenadaCentro.pontoY);
         devolucaoUI.setVisible(true);
     }//GEN-LAST:event_devolverButtonActionPerformed
 
@@ -137,13 +115,14 @@ public class DesktopUI extends javax.swing.JFrame {
         repaint();
         EmprestimoUI emprestimoUI = new EmprestimoUI();
 
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        Dimension inicioUISize = emprestimoUI.getSize();
-        int xLocation = (screenSize.width - inicioUISize.width) / 2;
-        int yLocation = (screenSize.height - inicioUISize.height) / 2;
+        Dimension emprestimoUISize = emprestimoUI.getSize();
+        Coordenada coordenadaCentro = DesktopUI.getCentroTela(
+                emprestimoUISize.width,
+                emprestimoUISize.height
+        );
 
         this.desktopPane.add(emprestimoUI);
-        emprestimoUI.setLocation(xLocation, yLocation);
+        emprestimoUI.setLocation(coordenadaCentro.pontoX, coordenadaCentro.pontoY);
         emprestimoUI.setVisible(true);
     }//GEN-LAST:event_emprestarButtonActionPerformed
 

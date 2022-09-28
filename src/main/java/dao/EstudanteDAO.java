@@ -15,7 +15,7 @@ public class EstudanteDAO extends GenericoDAO<Estudante> {
 
         try {
             getSessao().beginTransaction();
-            estudantes = (List<Estudante>) getSessao().createQuery("from Estudante").list();
+            estudantes = getSessao().createQuery("from Estudante", Estudante.class).list();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -31,7 +31,7 @@ public class EstudanteDAO extends GenericoDAO<Estudante> {
 
         try {
             getSessao().beginTransaction();
-            estudante = (Estudante) getSessao().get(Estudante.class, id);
+            estudante = getSessao().get(Estudante.class, id);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

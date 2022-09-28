@@ -17,7 +17,7 @@ public class ReservaDAO extends GenericoDAO<Reserva> {
 
         try {
             getSessao().beginTransaction();
-            reservas = (List<Reserva>) getSessao().createQuery("from Reserva").list();
+            reservas = getSessao().createQuery("from Reserva", Reserva.class).list();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -34,7 +34,7 @@ public class ReservaDAO extends GenericoDAO<Reserva> {
 
         try {
             getSessao().beginTransaction();
-            reserva = (Reserva) getSessao().get(Reserva.class, id);
+            reserva = getSessao().get(Reserva.class, id);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

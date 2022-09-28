@@ -1,15 +1,15 @@
 package respostas;
 
 public class RespostaGenerica<T> {
-    private Integer codigoResposta = null;
+    private CodigosResposta codigoResposta = null;
     private T data = null;
 
-    public RespostaGenerica(Integer codigoResposta, T data) {
+    public RespostaGenerica(CodigosResposta codigoResposta, T data) {
         this.codigoResposta = codigoResposta;
         this.data = data;
     }
 
-    public Integer getCodigoResposta() {
+    public CodigosResposta getCodigoResposta() {
         return codigoResposta;
     }
 

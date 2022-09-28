@@ -14,7 +14,7 @@ public class ArmarioDAO extends GenericoDAO<Armario> {
         
         try {
             getSessao().beginTransaction();
-            armarios = (List<Armario>) getSessao().createQuery("from Armario").list();
+            armarios = getSessao().createQuery("from Armario", Armario.class).getResultList();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -30,7 +30,7 @@ public class ArmarioDAO extends GenericoDAO<Armario> {
         
         try {
             getSessao().beginTransaction();
-            armario = (Armario) getSessao().get(Armario.class, id);
+            armario = getSessao().get(Armario.class, id);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

@@ -1,53 +1,49 @@
 package servicos;
 
-import dao.EstudanteDAO;
 import dao.ReservaDAO;
 import modelos.Armario;
 import modelos.Estudante;
 import modelos.Reserva;
+import respostas.CodigosResposta;
 import respostas.RespostaGenerica;
 
 public class ReservaServico {
 
-    public static final int COD_SUCESSO = 1;
-    public static final int COD_ARMARIO_INDISPONIVEL = 2;
-    public static final int COD_ESTUDANTE_EMPRESTIMO_PENDENTE = 3;
+    private static final ReservaDAO dao = new ReservaDAO();
 
-    public static  final int COD_ERRO = 4;
+    public static RespostaGenerica<Reserva> emprestar(String ra, String senha, String numeroArmario) {
+        try {
+            RespostaGenerica<Estudante> respostaEstudante = EstudanteServico.autenticar(ra, senha);
+            Estudante estudante = respostaEstudante.getData();
 
-    private static ReservaDAO dao = new ReservaDAO();
+            if (estudante == null) {
+                return new RespostaGenerica<>(CodigosResposta.CODIGO_401_NAO_AUTORIZADO, null);
+            }
 
-    public static RespostaGenerica emprestar(String ra, String senha, String numeroArmario) {
-        RespostaGenerica<Estudante> respostaEstudante = EstudanteServico.autenticar(ra, senha);
-        if (respostaEstudante.getData() == null) {
-            return new RespostaGenerica(COD_ERRO, null);
+            RespostaGenerica<Armario> respostaArmario = ArmarioServico.buscarPorNumero(numeroArmario);
+            Reserva reservaPendente = dao.buscarPorEstudanteEDevolucaoNull(estudante);
+
+            if (reservaPendente != null) {
+                return new RespostaGenerica<>(CodigosResposta.CODIGO_409_CONFLITO, null);
+            }
+
+            Reserva reserva = new Reserva();
+            reserva.setArmario(respostaArmario.getData());
+            reserva.setEstudante(estudante);
+            dao.criar(reserva);
+
+            return new RespostaGenerica<>(CodigosResposta.CODIGO_200_SUCESSO, null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new RespostaGenerica<>(CodigosResposta.CODIGO_500_ERRO_INTERNO, null);
         }
-
-        RespostaGenerica<Armario> respostaArmario = ArmarioServico.buscarPorNumero(numeroArmario);
-
-        if (respostaArmario.getData() == null) {
-            return new RespostaGenerica(COD_ERRO, null);
-        }
-
-        Reserva reservaPendente = dao.buscarPorEstudanteEDevolucaoNull(respostaEstudante.getData());
-
-        if (reservaPendente != null) {
-            return new RespostaGenerica(COD_ESTUDANTE_EMPRESTIMO_PENDENTE, null);
-        }
-
-        Reserva reserva = new Reserva();
-        reserva.setArmario(respostaArmario.getData());
-        reserva.setEstudante(respostaEstudante.getData());
-        dao.criar(reserva);
-
-        return new RespostaGenerica(COD_SUCESSO, null);
     }
 
-    public static RespostaGenerica armarioDisponivel(String numeroArmario) {
+    public static RespostaGenerica<Boolean> armarioDisponivel(String numeroArmario) {
         Reserva reserva = dao.buscarPorArmarioEDevolucaoIsNull(numeroArmario);
-        if(reserva == null) {
-            return new RespostaGenerica(COD_ARMARIO_INDISPONIVEL, null );
+        if (reserva == null) {
+            return new RespostaGenerica<>(CodigosResposta.CODIGO_409_CONFLITO, false);
         }
-        return new RespostaGenerica(COD_SUCESSO, null);
+        return new RespostaGenerica<>(CodigosResposta.CODIGO_200_SUCESSO, true);
     }
 }

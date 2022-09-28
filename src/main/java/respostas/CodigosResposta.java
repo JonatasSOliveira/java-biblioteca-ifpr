@@ -1,0 +1,9 @@
+package respostas;
+
+public enum CodigosResposta {
+    CODIGO_200_SUCESSO,
+    CODIGO_400_MAL_FORMULADO,
+    CODIGO_401_NAO_AUTORIZADO,
+    CODIGO_409_CONFLITO,
+    CODIGO_500_ERRO_INTERNO
+}

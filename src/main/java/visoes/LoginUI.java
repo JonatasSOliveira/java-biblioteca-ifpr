@@ -6,6 +6,7 @@ package visoes;
 
 import controles.BibliotecarioControle;
 import modelos.Bibliotecario;
+import respostas.CodigosResposta;
 import respostas.RespostaGenerica;
 import servicos.BibliotecarioServico;
 
@@ -141,7 +142,7 @@ public class LoginUI extends javax.swing.JFrame {
 
         RespostaGenerica<Bibliotecario> respostaAutenticacao = BibliotecarioControle.autenticar(login, senha);
 
-        if (respostaAutenticacao.getCodigoResposta() == BibliotecarioServico.COD_LOGIN_INVALIDO) {
+        if (respostaAutenticacao.getCodigoResposta() == CodigosResposta.CODIGO_401_NAO_AUTORIZADO) {
             JOptionPane.showMessageDialog(rootPane, "Login Inválido");
         } else {
             JOptionPane.showMessageDialog(rootPane, "Login Válido");
