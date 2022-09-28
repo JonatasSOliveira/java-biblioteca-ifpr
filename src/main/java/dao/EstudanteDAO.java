@@ -78,7 +78,7 @@ public class EstudanteDAO extends GenericoDAO<Estudante> {
         }
     }
 
-    public Estudante autenticarEstudante(String ra, String senha) {
+    public Estudante buscarPorRaESenha(String ra, String senha) {
         Estudante estudante = null;
 
         try {

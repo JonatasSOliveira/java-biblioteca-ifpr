@@ -10,7 +10,7 @@ public class EstudanteServico {
     private static EstudanteDAO dao = new EstudanteDAO();
 
     public static RespostaGenerica<Estudante> autenticar(String ra, String senha) {
-        Estudante estudante = dao.autenticarEstudante(ra, senha);
+        Estudante estudante = dao.buscarPorRaESenha(ra, senha);
         return new RespostaGenerica<>(CodigosResposta.CODIGO_200_SUCESSO, estudante);
     }
 }

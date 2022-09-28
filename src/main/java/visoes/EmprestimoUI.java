@@ -7,7 +7,6 @@ package visoes;
 import controles.ReservaControle;
 import modelos.Reserva;
 import respostas.RespostaGenerica;
-import servicos.ReservaServico;
 
 import javax.swing.JOptionPane;
 
@@ -159,16 +158,8 @@ public class EmprestimoUI extends javax.swing.JInternalFrame {
         String senha = new String(senhaInput.getPassword());
         String numeroArmario = nArmarioInput.getText();
 
-        RespostaGenerica<Reserva> resposta = ReservaControle.emprestar(ra, senha, numeroArmario);
-        switch (resposta.getCodigoResposta()) {
-            case CODIGO_200_SUCESSO:
-                JOptionPane.showMessageDialog(null, "Chave emprestadada com sucesso");
-                break;
-
-            case CODIGO_500_ERRO_INTERNO:
-                JOptionPane.showMessageDialog(null, "Erro: Exceção não tratada");
-                break;
-        }
+        RespostaGenerica<Reserva> resposta = ReservaControle.reservar(ra, senha, numeroArmario);
+        JOptionPane.showMessageDialog(null, resposta.getMensagem());
     }//GEN-LAST:event_btnEmprestarActionPerformed
 
     private void senhaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaInputActionPerformed

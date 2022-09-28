@@ -5,6 +5,9 @@
 package visoes;
 
 import controles.DevolucaoControler;
+import controles.ReservaControle;
+import modelos.Reserva;
+import respostas.RespostaGenerica;
 
 import javax.swing.JOptionPane;
 
@@ -127,14 +130,12 @@ public class DevolucaoUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessarActionPerformed
-        String nArmario = nArmarioInput.getText();
+        String numeroArmario = nArmarioInput.getText();
+        String ra = "";
+        String senha = "";
 
-        int devolucao = DevolucaoControler.devolver(nArmario);
-        switch (devolucao) {
-            case DevolucaoControler.COD_ARMARIO_JA_DEVOLVIDO -> JOptionPane.showMessageDialog(null, "Armario já devolvido!");
-            case DevolucaoControler.COD_ARMARIO_INEXISTENTE -> JOptionPane.showMessageDialog(null, "Armario Inexistente ou não encontrado, caso realmente exista contate a secretaria");
-            case DevolucaoControler.COD_DEVOLVIDO_COM_SUCESSO -> JOptionPane.showMessageDialog(null, "Armario devolvido!");
-        }
+        RespostaGenerica<Reserva> resposta = ReservaControle.devolver(ra, senha, numeroArmario);
+        JOptionPane.showMessageDialog(null, resposta.getMensagem());
     }//GEN-LAST:event_btnAcessarActionPerformed
 
 

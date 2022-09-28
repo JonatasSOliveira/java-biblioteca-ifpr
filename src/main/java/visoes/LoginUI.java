@@ -141,12 +141,7 @@ public class LoginUI extends javax.swing.JFrame {
         String senha = new String(inputSenha.getPassword());
 
         RespostaGenerica<Bibliotecario> respostaAutenticacao = BibliotecarioControle.autenticar(login, senha);
-
-        if (respostaAutenticacao.getCodigoResposta() == CodigosResposta.CODIGO_401_NAO_AUTORIZADO) {
-            JOptionPane.showMessageDialog(rootPane, "Login Inválido");
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Login Válido");
-        }
+        JOptionPane.showMessageDialog(rootPane, respostaAutenticacao.getMensagem());
     }//GEN-LAST:event_btnAcessarActionPerformed
 
 
