@@ -9,6 +9,7 @@ import modelos.Bibliotecario;
 import respostas.CodigosResposta;
 import respostas.RespostaGenerica;
 import servicos.BibliotecarioServico;
+import sessao.SessaoBibliotecario;
 
 import javax.swing.JOptionPane;
 
@@ -142,6 +143,10 @@ public class LoginUI extends javax.swing.JFrame {
 
         RespostaGenerica<Bibliotecario> respostaAutenticacao = BibliotecarioControle.autenticar(login, senha);
         JOptionPane.showMessageDialog(rootPane, respostaAutenticacao.getMensagem());
+
+        if (respostaAutenticacao.getCodigoResposta() == CodigosResposta.CODIGO_200_SUCESSO) {
+            SessaoBibliotecario.setBibliotecarioLogado(respostaAutenticacao.getData());
+        }
     }//GEN-LAST:event_btnAcessarActionPerformed
 
 

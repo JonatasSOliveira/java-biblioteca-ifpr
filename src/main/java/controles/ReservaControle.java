@@ -11,6 +11,6 @@ public class ReservaControle {
     }
 
     public static RespostaGenerica<Reserva> devolver(String ra, String senha, String numeroArmario) {
-
+        return ReservaServico.devolver(ra, senha, numeroArmario);
     }
 }

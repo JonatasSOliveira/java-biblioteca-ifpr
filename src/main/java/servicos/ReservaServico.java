@@ -57,4 +57,8 @@ public class ReservaServico {
         }
         return new RespostaGenerica<>(CodigosResposta.CODIGO_200_SUCESSO, true);
     }
+    
+    public static RespostaGenerica<Reserva> devolver (String ra, String senha, String numeroArmario) {
+        return new RespostaGenerica<>(CodigosResposta.CODIGO_500_ERRO_INTERNO);
+    }
 }
