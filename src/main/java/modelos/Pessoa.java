@@ -25,6 +25,10 @@ public class Pessoa {
     private String telefone;
 
     @Column(name = "senha", nullable = false)
+    @ColumnTransformer(
+        read = "decrypt('AES', '00', senha)",
+        write = "encrypt('AES', '00', ?)"
+    )
     private String senha;
 
     @Column(name = "ativo", nullable = false)
