@@ -5,6 +5,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import org.hibernate.annotations.ColumnTransformer;
 
 @Entity@Table(name = "pessoa")
 @Inheritance(strategy = InheritanceType.JOINED)
