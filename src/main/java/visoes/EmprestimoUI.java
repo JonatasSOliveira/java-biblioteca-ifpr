@@ -167,8 +167,6 @@ public class EmprestimoUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_senhaInputActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        InicioUI inicioUI = new InicioUI();
-        inicioUI.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelActionPerformed
 

@@ -31,6 +31,16 @@ public class DesktopUI extends javax.swing.JFrame {
         );
 
     }
+    
+    private void iniciarInternalFrame(JInternalFrame internalFrame) {
+       this.desktopPane.removeAll();
+       repaint();
+       Dimension internalFrameSize = internalFrame.getSize();
+       Coordenada coordenadaCentro = DesktopUI.getCentroTela(internalFrameSize.width, internalFrameSize.height);
+       this.desktopPane.add(internalFrame);
+       internalFrame.setLocation(coordenadaCentro.getPontoX(), coordenadaCentro.getPontoY());
+       internalFrame.setVisible(true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -134,35 +144,15 @@ public class DesktopUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void devolverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devolverButtonActionPerformed
-        this.desktopPane.removeAll();
-        repaint();
-        DevolucaoUI devolucaoUI = new DevolucaoUI();
-
-        Dimension devolucaoUISize = devolucaoUI.getSize();
-        Coordenada coordenadaCentro = DesktopUI.getCentroTela(devolucaoUISize.width, devolucaoUISize.height);
-
-        this.desktopPane.add(devolucaoUI);
-        devolucaoUI.setLocation(coordenadaCentro.getPontoX(), coordenadaCentro.getPontoY());
-        devolucaoUI.setVisible(true);
+        this.iniciarInternalFrame(new DevolucaoUI());
     }//GEN-LAST:event_devolverButtonActionPerformed
 
     private void emprestarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emprestarButtonActionPerformed
-        this.desktopPane.removeAll();
-        repaint();
-        EmprestimoUI emprestimoUI = new EmprestimoUI();
-
-        Dimension emprestimoUISize = emprestimoUI.getSize();
-        Coordenada coordenadaCentro = DesktopUI.getCentroTela(emprestimoUISize.width, emprestimoUISize.height);
-
-        this.desktopPane.add(emprestimoUI);
-        emprestimoUI.setLocation(coordenadaCentro.getPontoX(), coordenadaCentro.getPontoY());
-        emprestimoUI.setVisible(true);
+        this.iniciarInternalFrame(new EmprestimoUI());
     }//GEN-LAST:event_emprestarButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        LoginUI loginUI = new LoginUI();
-        loginUI.setVisible(true);
-        this.setVisible(false);
+        this.iniciarInternalFrame(new LoginUI());
     }//GEN-LAST:event_loginButtonActionPerformed
 
 
