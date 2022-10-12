@@ -5,6 +5,9 @@
 package visoes;
 
 import controles.ReservaControle;
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelos.Reserva;
 import respostas.RespostaGenerica;
 
@@ -167,7 +170,11 @@ public class EmprestimoUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_senhaInputActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        this.setVisible(false);
+        try {
+            this.setClosed(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(EmprestimoUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void nArmarioInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nArmarioInputActionPerformed

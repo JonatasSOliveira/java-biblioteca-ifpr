@@ -79,9 +79,9 @@ public class BibliotecarioDAO extends GenericoDAO<Bibliotecario> {
 
     public Bibliotecario buscarPorLoginESenha(String login, String senha) {
         Bibliotecario bibliotecario = null;
-        String query = "select b from Bibliotecario b" +
-                " where b.login = :login " +
-                " and b.senha = :senha";
+        String query = "Select b from Bibliotecario as b" +
+                " where b.login = :login" +
+                " and b.senha = MD5(:senha)";
 
         try {
             getSessao().beginTransaction();
@@ -90,7 +90,6 @@ public class BibliotecarioDAO extends GenericoDAO<Bibliotecario> {
                     .setParameter("login", login)
                     .setParameter("senha", senha)
                     .getSingleResult();
-            getSessao().getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

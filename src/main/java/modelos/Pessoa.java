@@ -16,7 +16,7 @@ public class Pessoa {
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "nome", nullable = false)
     private String nome;
 
     @Column(name = "email", unique = true)
@@ -26,9 +26,8 @@ public class Pessoa {
     private String telefone;
 
     @Column(name = "senha", nullable = false)
-    @ColumnTransformer(
-        read = "decrypt('AES', '00', senha)",
-        write = "encrypt('AES', '00', ?)"
+    @ColumnTransformer(        
+        write = "MD5(?)"
     )
     private String senha;
 
@@ -53,7 +52,6 @@ public class Pessoa {
         this.telefone = telefone;
         this.senha = senha;
         this.ativo = ativo;
-        this.dataAtualizacao = dataAtualizacao;
     }
 
     public String getNome() {

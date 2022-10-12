@@ -6,6 +6,9 @@ package visoes;
 
 import controles.DevolucaoControler;
 import controles.ReservaControle;
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelos.Reserva;
 import respostas.RespostaGenerica;
 
@@ -124,7 +127,11 @@ public class DevolucaoUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_nArmarioInputActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        this.setVisible(false);
+        try {
+            this.setClosed(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(DevolucaoUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessarActionPerformed

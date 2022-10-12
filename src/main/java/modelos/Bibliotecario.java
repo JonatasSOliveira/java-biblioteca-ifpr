@@ -23,6 +23,12 @@ public class Bibliotecario extends Pessoa {
         this.siape = siape;
     }
 
+    public Bibliotecario(String siape, String login, String nome, String email, String telefone, String senha, boolean ativo) {
+        super(nome, email, telefone, senha, ativo);
+        this.siape = siape;
+        this.login = login;
+    }
+    
     public String getSiape() {
         return siape;
     }

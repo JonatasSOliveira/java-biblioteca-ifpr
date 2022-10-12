@@ -5,11 +5,17 @@
 package main;
 
 import conexao.HibernateUtil;
+
 import dao.ArmarioDAO;
+import dao.BibliotecarioDAO;
 import dao.EstudanteDAO;
+
 import modelos.Armario;
 import modelos.Estudante;
+import modelos.Bibliotecario;
+
 import org.hibernate.Session;
+
 import visoes.DesktopUI;
 
 import java.util.List;
@@ -20,20 +26,29 @@ import java.util.List;
  */
 public class Main {
 
-//    Note: Função provisoria para cirar valores de teste. Será removido depois
+    // NOTE: Função para criar valores de teste. Será removido posteriormente
     private static void criarValoresTeste() {
         ArmarioDAO armarioDAO = new ArmarioDAO();
         List<Armario> armarios =  armarioDAO.buscarTodos();
-        if (armarios.size() == 0) {
+        if (armarios.isEmpty()) {
             Armario armario = new Armario("001", true, null);
             armarioDAO.criar(armario);
         }
 
         EstudanteDAO estudanteDAO = new EstudanteDAO();
         List<Estudante> estudantes =  estudanteDAO.buscarTodos();
-        if (estudantes.size() == 0) {
+        if (estudantes.isEmpty()) {
             Estudante estudante = new Estudante("TESTE", "TESTE@TESTE.COM","44984563076", "001", "001", true);
             estudanteDAO.criar(estudante);
+        }
+        
+        BibliotecarioDAO bibliotecarioDAO = new BibliotecarioDAO();
+        List<Bibliotecario> bibliotecarios = bibliotecarioDAO.buscarTodos();
+        if (bibliotecarios.isEmpty()) {
+            Bibliotecario bibliotecario = new Bibliotecario(
+                    "001", "admin", "BIBLIOTECARIO", "TESTE2@TESTE.COM", 
+                    "44984563076", "admin", true);
+            bibliotecarioDAO.criar(bibliotecario);
         }
     }
 
