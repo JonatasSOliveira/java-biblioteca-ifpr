@@ -11,17 +11,23 @@ public abstract class GenericoDAO<T> {
     public GenericoDAO() {
         this.sessao = HibernateUtil.getSession();
     }
+    
+    protected abstract String getNomeModelo();
+
+    protected abstract Class<T> getClasseModelo();
 
     protected Session getSessao() {
         return this.sessao;
     }
-
+    
     public List<T> buscarTodos() {
         List<T> listaModelos = null;
 
         try {
             getSessao().beginTransaction();
-            listaModelos = (List<T>) getSessao().createQuery("from " + this.getNomeModelo()).list();
+            listaModelos = getSessao()
+                    .createQuery("from " + this.getNomeModelo(),
+                            this.getClasseModelo()).list();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -36,7 +42,7 @@ public abstract class GenericoDAO<T> {
 
         try {
             getSessao().beginTransaction();
-            modelo = (T) getSessao().get(this.getClasseModelo(), id);
+            modelo = getSessao().get(this.getClasseModelo(), id);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -57,11 +63,26 @@ public abstract class GenericoDAO<T> {
         }
     }
 
-    protected abstract String getNomeModelo();
+    public void atualizar(T modelo) {
+        try {
+            getSessao().beginTransaction();
+            getSessao().update(modelo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            getSessao().getTransaction().commit();
+        }
+    }
 
-    protected abstract Class<T> getClasseModelo();
+    public void excluir(T modelo) {
+        try {
+            getSessao().beginTransaction();
+            getSessao().delete(modelo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            getSessao().getTransaction().commit();
+        }
+    }    
 
-    public abstract void atualizar(T modelo);
-
-    public abstract void excluir(T modelo);
 }

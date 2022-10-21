@@ -9,7 +9,6 @@ public class ArmarioDAO extends GenericoDAO<Armario> {
     }
 
     @Override
-
     protected String getNomeModelo() {
         return "Armario";
     }
@@ -17,30 +16,6 @@ public class ArmarioDAO extends GenericoDAO<Armario> {
     @Override
     public Class<Armario> getClasseModelo() {
         return Armario.class;
-    }
-
-    @Override
-    public void atualizar(Armario armario) {
-        try {
-            getSessao().beginTransaction();
-            getSessao().update(armario);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
-    }
-
-    @Override
-    public void excluir(Armario armario) {
-        try {
-            getSessao().beginTransaction();
-            getSessao().delete(armario);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
     }
 
     public Armario buscarPorNumero(String numero) {

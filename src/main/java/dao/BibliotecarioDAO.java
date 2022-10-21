@@ -18,30 +18,6 @@ public class BibliotecarioDAO extends GenericoDAO<Bibliotecario> {
         return Bibliotecario.class;
     }
 
-    @Override
-    public void atualizar(Bibliotecario bibliotecario) {
-        try {
-            getSessao().beginTransaction();
-            getSessao().update(bibliotecario);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
-    }
-
-    @Override
-    public void excluir(Bibliotecario bibliotecario) {
-        try {
-            getSessao().beginTransaction();
-            getSessao().delete(bibliotecario);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
-    }
-
     public Bibliotecario buscarPorLoginESenha(String login, String senha) {
         Bibliotecario bibliotecario = null;
         String query = "Select b from Bibliotecario as b"

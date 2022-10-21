@@ -21,38 +21,20 @@ public class ReservaDAO extends GenericoDAO<Reserva> {
         return Reserva.class;
     }
 
-    @Override
-    public void atualizar(Reserva reserva) {
-        try {
-            getSessao().beginTransaction();
-            getSessao().update(reserva);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
-    }
-
-    @Override
-    public void excluir(Reserva reserva) {
-        try {
-            getSessao().beginTransaction();
-            getSessao().delete(reserva);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
-    }
-
     public Reserva buscarPorArmarioEDevolucaoIsNull(String numeroArmario) {
         Reserva reserva = null;
+        String queryReserva = "SELECT arm FROM Armario arm "
+                + "WHERE arm.numero=:numeroArmario";
+        String queryArmario = "SELECT r FROM Reserva r "
+                + "WHERE r.armario=:armario and r.dataHoraDevolucao is null";
+
         try {
             getSessao().beginTransaction();
-            Armario armario = (Armario) getSessao().createQuery("SELECT arm FROM Armario arm WHERE arm.numero=:numeroArmario")
+            Armario armario = getSessao()
+                    .createQuery(queryReserva, Armario.class)
                     .setParameter("numeroArmario", numeroArmario)
                     .getSingleResult();
-            reserva = (Reserva) getSessao().createQuery("SELECT r FROM Reserva r WHERE r.armario=:armario and r.dataHoraDevolucao is null")
+            reserva = getSessao().createQuery(queryArmario, Reserva.class)
                     .setParameter("armario", armario)
                     .getSingleResult();
 
