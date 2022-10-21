@@ -3,6 +3,7 @@ package dao;
 import conexao.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 public abstract class GenericoDAO<T> {
 
@@ -11,15 +12,17 @@ public abstract class GenericoDAO<T> {
     public GenericoDAO() {
         this.sessao = HibernateUtil.getSession();
     }
-    
+
     protected abstract String getNomeModelo();
 
     protected abstract Class<T> getClasseModelo();
 
+    protected abstract String[] getFiltrosPadrao();
+
     protected Session getSessao() {
         return this.sessao;
     }
-    
+
     public List<T> buscarTodos() {
         List<T> listaModelos = null;
 
@@ -28,6 +31,33 @@ public abstract class GenericoDAO<T> {
             listaModelos = getSessao()
                     .createQuery("from " + this.getNomeModelo(),
                             this.getClasseModelo()).list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            getSessao().getTransaction().commit();
+        }
+
+        return listaModelos;
+    }
+
+    public List<T> buscarPaginavelPorFiltro(int pagina, String filtro) {
+        List<T> listaModelos = null;
+        String[] filtrosPadrao = this.getFiltrosPadrao();
+        String hqlQuery = "from " + this.getNomeModelo();
+
+        if (filtrosPadrao.length > 0 && filtro != null && !filtro.isEmpty()) {
+            String whereFiltro = " = :filtro";
+            hqlQuery += " WHERE "
+                    + String.join(whereFiltro + " AND ", filtrosPadrao)
+                    + whereFiltro;
+        }
+
+        try {
+            getSessao().beginTransaction();
+            listaModelos = getSessao()
+                    .createQuery(hqlQuery, this.getClasseModelo())
+                    .setParameter(":filtro", filtro)
+                    .list();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -83,6 +113,6 @@ public abstract class GenericoDAO<T> {
         } finally {
             getSessao().getTransaction().commit();
         }
-    }    
+    }
 
 }

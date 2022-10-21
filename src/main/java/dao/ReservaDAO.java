@@ -21,6 +21,11 @@ public class ReservaDAO extends GenericoDAO<Reserva> {
         return Reserva.class;
     }
 
+    @Override
+    protected String[] getFiltrosPadrao() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
     public Reserva buscarPorArmarioEDevolucaoIsNull(String numeroArmario) {
         Reserva reserva = null;
         String queryReserva = "SELECT arm FROM Armario arm "

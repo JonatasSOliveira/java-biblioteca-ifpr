@@ -18,6 +18,11 @@ public class BibliotecarioDAO extends GenericoDAO<Bibliotecario> {
         return Bibliotecario.class;
     }
 
+    @Override
+    protected String[] getFiltrosPadrao() {
+        return new String[]{"nome"};
+    }
+    
     public Bibliotecario buscarPorLoginESenha(String login, String senha) {
         Bibliotecario bibliotecario = null;
         String query = "Select b from Bibliotecario as b"

@@ -18,6 +18,11 @@ public class ArmarioDAO extends GenericoDAO<Armario> {
         return Armario.class;
     }
 
+    @Override
+    protected String[] getFiltrosPadrao() {
+        return new String[]{"numero"};
+    }
+
     public Armario buscarPorNumero(String numero) {
         Armario armario = null;
         String query = "select a from Armario a"

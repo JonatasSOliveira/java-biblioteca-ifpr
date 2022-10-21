@@ -18,6 +18,11 @@ public class EstudanteDAO extends GenericoDAO<Estudante> {
         return Estudante.class;
     }
 
+    @Override
+    protected String[] getFiltrosPadrao() {
+        return new String[]{"nome"};
+    }
+
     public Estudante buscarPorRaESenha(String ra, String senha) {
         Estudante estudante = null;
         String query = "SELECT etd FROM Estudante etd "
