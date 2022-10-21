@@ -1,57 +1,24 @@
 package dao;
 
-import java.util.List;
 import modelos.Armario;
 
 public class ArmarioDAO extends GenericoDAO<Armario> {
+
     public ArmarioDAO() {
         super();
     }
 
     @Override
-    public List<Armario> buscarTodos() {
-        List<Armario> armarios = null;
-        
-        try {
-            getSessao().beginTransaction();
-            armarios = getSessao().createQuery("from Armario", Armario.class).getResultList();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
 
-        return armarios;
+    protected String getNomeModelo() {
+        return "Armario";
     }
 
     @Override
-    public Armario buscarPorId(Long id) {
-        Armario armario = null;
-        
-        try {
-            getSessao().beginTransaction();
-            armario = getSessao().get(Armario.class, id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
-        
-        return armario;
+    public Class<Armario> getClasseModelo() {
+        return Armario.class;
     }
-    
-    @Override
-    public void criar(Armario armario) {
-        try {
-            getSessao().beginTransaction();
-            getSessao().persist(armario);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
-    }
-    
+
     @Override
     public void atualizar(Armario armario) {
         try {
@@ -62,7 +29,7 @@ public class ArmarioDAO extends GenericoDAO<Armario> {
         } finally {
             getSessao().getTransaction().commit();
         }
-    }       
+    }
 
     @Override
     public void excluir(Armario armario) {
@@ -78,8 +45,8 @@ public class ArmarioDAO extends GenericoDAO<Armario> {
 
     public Armario buscarPorNumero(String numero) {
         Armario armario = null;
-        String query = "select a from Armario a" +
-                " where a.numero = :numero";
+        String query = "select a from Armario a"
+                + " where a.numero = :numero";
 
         try {
             getSessao().beginTransaction();

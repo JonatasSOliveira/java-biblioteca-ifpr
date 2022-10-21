@@ -1,57 +1,21 @@
 package dao;
 
-import java.util.List;
-
 import modelos.Estudante;
 
 public class EstudanteDAO extends GenericoDAO<Estudante> {
+
     public EstudanteDAO() {
         super();
     }
 
     @Override
-    public List<Estudante> buscarTodos() {
-        List<Estudante> estudantes = null;
-
-        try {
-            getSessao().beginTransaction();
-            estudantes = getSessao().createQuery("from Estudante", Estudante.class).list();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
-
-        return estudantes;
+    protected String getNomeModelo() {
+        return "Estudante";
     }
 
     @Override
-    public Estudante buscarPorId(Long id) {
-        Estudante estudante = null;
-
-        try {
-            getSessao().beginTransaction();
-            estudante = getSessao().get(Estudante.class, id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
-
-        return estudante;
-    }
-
-
-    @Override
-    public void criar(Estudante modelo) {
-        try {
-            getSessao().beginTransaction();
-            getSessao().persist(modelo);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
+    public Class<Estudante> getClasseModelo() {
+        return Estudante.class;
     }
 
     @Override
