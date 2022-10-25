@@ -19,4 +19,9 @@ public class EstudanteServico {
         List<Estudante> estudantes = dao.buscarTodos();
         return new RespostaGenerica<>(CodigosResposta.CODIGO_200_SUCESSO, estudantes);
     }
+    
+    public static RespostaGenerica<List<Estudante>> buscarPaginavelPorFiltro(int pagina, String filtro) {
+        List<Estudante> estudantes = dao.buscarPaginavelPorFiltro(pagina, filtro);
+        return new RespostaGenerica<>(CodigosResposta.CODIGO_200_SUCESSO, estudantes);
+    }
 }

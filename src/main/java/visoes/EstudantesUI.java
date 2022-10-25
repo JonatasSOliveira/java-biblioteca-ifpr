@@ -19,12 +19,12 @@ public final class EstudantesUI extends ListagemUI<Estudante> {
     
     @Override
     protected String[] getCabecalhosColunas() {
-        return new String[] {"Nome"};
+        return new String[] {"RA", "Nome"};
     }
 
     @Override
     protected List<Estudante> buscarDados(String filtro) {
-        RespostaGenerica<List<Estudante>> resposta = EstudanteControle.buscarTodos();
+        RespostaGenerica<List<Estudante>> resposta = EstudanteControle.buscarPaginavelPorFiltro(1, filtro);
         
         if (resposta.getCodigoResposta() != CodigosResposta.CODIGO_200_SUCESSO) {
             throw new Error();
@@ -35,11 +35,11 @@ public final class EstudantesUI extends ListagemUI<Estudante> {
 
     @Override
     protected String[] getLinha(Estudante estudante) {
-        return new String[] {estudante.getNome()};
+        return new String[] {estudante.getRa(), estudante.getNome()};
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -54,8 +54,8 @@ public final class EstudantesUI extends ListagemUI<Estudante> {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    // End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify                     
+    // End of variables declaration                   
 }

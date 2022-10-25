@@ -14,4 +14,8 @@ public class EstudanteControle {
     public static RespostaGenerica<List<Estudante>> buscarTodos() {
         return EstudanteServico.buscarTodos();
     }
+    
+    public static RespostaGenerica<List<Estudante>> buscarPaginavelPorFiltro(int pagina, String filtro) {
+        return EstudanteServico.buscarPaginavelPorFiltro(pagina, filtro);
+    }
 }

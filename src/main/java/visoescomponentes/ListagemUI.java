@@ -19,8 +19,16 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
     }
     
     private void carregaDados(String filtro) {
-        for (T entidade : this.buscarDados(filtro)) {
-            this.tableModel.addRow(this.getLinha(entidade));
+        int rowCount = this.tableModel.getRowCount();
+        for (int i = rowCount - 1; i >= 0; i--) {
+            this.tableModel.removeRow(i);
+        }
+        List<T> listaDados = this.buscarDados(filtro);
+
+        if (listaDados != null) {
+            for (T entidade : listaDados) {
+                this.tableModel.addRow(this.getLinha(entidade));
+            }
         }
     }
 
@@ -31,7 +39,7 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
     protected abstract String[] getLinha(T entidade);
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         painelFiltros = new javax.swing.JPanel();
@@ -91,19 +99,19 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
         getContentPane().add(painelTabela, java.awt.BorderLayout.CENTER);
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         this.carregaDados(this.inputFiltro.getText());
-    }//GEN-LAST:event_btnBuscarActionPerformed
+    }                                         
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton btnBuscar;
     private javax.swing.JTextField inputFiltro;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel painelFiltros;
     private javax.swing.JPanel painelTabela;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }

@@ -44,9 +44,11 @@ public abstract class GenericoDAO<T> {
         List<T> listaModelos = null;
         String[] filtrosPadrao = this.getFiltrosPadrao();
         String hqlQuery = "from " + this.getNomeModelo();
+        boolean existeFiltro = filtrosPadrao.length > 0 && filtro != null && !filtro.isEmpty();
+        
 
-        if (filtrosPadrao.length > 0 && filtro != null && !filtro.isEmpty()) {
-            String whereFiltro = " = :filtro";
+        if (existeFiltro) {
+            String whereFiltro = " LIKE :filtro";
             hqlQuery += " WHERE "
                     + String.join(whereFiltro + " AND ", filtrosPadrao)
                     + whereFiltro;
@@ -54,10 +56,14 @@ public abstract class GenericoDAO<T> {
 
         try {
             getSessao().beginTransaction();
-            listaModelos = getSessao()
-                    .createQuery(hqlQuery, this.getClasseModelo())
-                    .setParameter(":filtro", filtro)
-                    .list();
+            Query queryset = getSessao()
+                    .createQuery(hqlQuery, this.getClasseModelo());
+            
+            if (existeFiltro) {
+                queryset = queryset.setParameter("filtro", "%" + filtro + "%");
+            }
+            
+            listaModelos = queryset.list();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

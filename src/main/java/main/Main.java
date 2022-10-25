@@ -40,6 +40,8 @@ public class Main {
         if (estudantes.isEmpty()) {
             Estudante estudante = new Estudante("TESTE", "TESTE@TESTE.COM","44984563076", "001", "001", true);
             estudanteDAO.criar(estudante);
+            Estudante estudante2 = new Estudante("SANTYERO", "SANTYERO@SANTYERO.COM","44984563077", "002", "002", true);
+            estudanteDAO.criar(estudante2);
         }
         
         BibliotecarioDAO bibliotecarioDAO = new BibliotecarioDAO();
