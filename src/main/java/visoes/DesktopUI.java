@@ -66,6 +66,7 @@ public class DesktopUI extends JFrame {
         menuCadastros = new javax.swing.JMenu();
         menuItemEstudantes = new javax.swing.JMenuItem();
         menuItemReservas = new javax.swing.JMenuItem();
+        menuItemBibliotecarios = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -145,6 +146,14 @@ public class DesktopUI extends JFrame {
         });
         menuCadastros.add(menuItemReservas);
 
+        menuItemBibliotecarios.setText("Bibliotecarios");
+        menuItemBibliotecarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemBibliotecariosActionPerformed(evt);
+            }
+        });
+        menuCadastros.add(menuItemBibliotecarios);
+
         menuBar.add(menuCadastros);
 
         setJMenuBar(menuBar);
@@ -187,6 +196,10 @@ public class DesktopUI extends JFrame {
         this.iniciarInternalFrame(new ReservasUI());
     }//GEN-LAST:event_menuItemReservasActionPerformed
 
+    private void menuItemBibliotecariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemBibliotecariosActionPerformed
+        this.iniciarInternalFrame(new BibliotecariosUI());
+    }//GEN-LAST:event_menuItemBibliotecariosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JButton devolverButton;
@@ -195,6 +208,7 @@ public class DesktopUI extends JFrame {
     private javax.swing.JButton loginButton;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuCadastros;
+    private javax.swing.JMenuItem menuItemBibliotecarios;
     private javax.swing.JMenuItem menuItemEstudantes;
     private javax.swing.JMenuItem menuItemReservas;
     // End of variables declaration//GEN-END:variables

@@ -1,8 +1,8 @@
 package visoes;
 
-import controles.ReservaControle;
+import controles.BibliotecarioControle;
 import java.util.List;
-import modelos.Reserva;
+import modelos.Bibliotecario;
 import respostas.CodigosResposta;
 import respostas.RespostaGenerica;
 import visoescomponentes.ListagemUI;
@@ -11,20 +11,20 @@ import visoescomponentes.ListagemUI;
  *
  * @author Jonatas Oliveira
  */
-public final class BibliotecarioUI extends ListagemUI<Reserva> {
+public final class BibliotecariosUI extends ListagemUI<Bibliotecario> {
 
-    public BibliotecarioUI() {
+    public BibliotecariosUI() {
         super();
     }
     
     @Override
     protected String[] getCabecalhosColunas() {
-        return new String[] {"armario", "data hora devolucao"};
+        return new String[] {"siape", "login", "nome"};
     }
 
     @Override
-    protected List<Reserva> buscarDados(String filtro) {
-        RespostaGenerica<List<Reserva>> resposta = ReservaControle.buscarPaginavelPorFiltro(1, filtro);
+    protected List<Bibliotecario> buscarDados(String filtro) {
+        RespostaGenerica<List<Bibliotecario>> resposta = BibliotecarioControle.buscarPaginavelPorFiltro(1, filtro);
         
         if (resposta.getCodigoResposta() != CodigosResposta.CODIGO_200_SUCESSO) {
             throw new Error();
@@ -34,8 +34,8 @@ public final class BibliotecarioUI extends ListagemUI<Reserva> {
     }
 
     @Override
-    protected String[] getLinha(Reserva reserva) {
-        return new String[] {reserva.getArmario().getNumero(), reserva.getDataHoraDevolucao().toString()};
+    protected String[] getLinha(Bibliotecario bibliotecario) {
+        return new String[] {bibliotecario.getNome(), bibliotecario.getLogin(), bibliotecario.getNome() };
     }
 
     @SuppressWarnings("unchecked")

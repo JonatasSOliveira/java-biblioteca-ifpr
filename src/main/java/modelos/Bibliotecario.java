@@ -36,5 +36,9 @@ public class Bibliotecario extends Pessoa {
     public void setSiape(String siape) {
         this.siape = siape;
     }
+    
+    public String getLogin() {
+        return login;
+    }
 
 }
