@@ -23,7 +23,7 @@ public class ReservaDAO extends GenericoDAO<Reserva> {
 
     @Override
     protected String[] getFiltrosPadrao() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new String[]{};
     }
 
     public Reserva buscarPorArmarioEDevolucaoIsNull(String numeroArmario) {

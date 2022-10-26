@@ -9,6 +9,8 @@ import conexao.HibernateUtil;
 import dao.ArmarioDAO;
 import dao.BibliotecarioDAO;
 import dao.EstudanteDAO;
+import dao.ReservaDAO;
+import java.util.Date;
 
 import modelos.Armario;
 import modelos.Estudante;
@@ -19,6 +21,7 @@ import org.hibernate.Session;
 import visoes.DesktopUI;
 
 import java.util.List;
+import modelos.Reserva;
 
 /**
  *
@@ -51,6 +54,18 @@ public class Main {
                     "001", "admin", "BIBLIOTECARIO", "TESTE2@TESTE.COM", 
                     "44984563076", "admin", true);
             bibliotecarioDAO.criar(bibliotecario);
+        }
+        
+        ReservaDAO reservaDAO = new ReservaDAO();
+        List<Reserva> reservas = reservaDAO.buscarTodos();
+        if (reservas.isEmpty()) {
+            Reserva reserva = new Reserva(
+                    new Date(), 
+                    new Date(), 
+                    armarioDAO.buscarPorId((long) 1), 
+                    estudanteDAO.buscarPorId((long) 1)
+            );
+            reservaDAO.criar(reserva);
         }
     }
 

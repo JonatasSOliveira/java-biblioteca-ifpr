@@ -1,6 +1,7 @@
 package servicos;
 
 import dao.ReservaDAO;
+import java.util.List;
 import modelos.Armario;
 import modelos.Estudante;
 import modelos.Reserva;
@@ -60,5 +61,10 @@ public class ReservaServico {
     
     public static RespostaGenerica<Reserva> devolver (String ra, String senha, String numeroArmario) {
         return new RespostaGenerica<>(CodigosResposta.CODIGO_500_ERRO_INTERNO);
+    }
+    
+     public static RespostaGenerica<List<Reserva>> buscarPaginavelPorFiltro(int pagina, String filtro) {
+        List<Reserva> reserva = dao.buscarPaginavelPorFiltro(pagina, filtro);
+        return new RespostaGenerica<>(CodigosResposta.CODIGO_200_SUCESSO, reserva);
     }
 }
