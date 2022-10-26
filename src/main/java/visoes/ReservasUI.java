@@ -5,6 +5,7 @@ import java.util.List;
 import modelos.Reserva;
 import respostas.CodigosResposta;
 import respostas.RespostaGenerica;
+import visoescomponentes.FormularioUI;
 import visoescomponentes.ListagemUI;
 
 /**
@@ -36,6 +37,11 @@ public final class ReservasUI extends ListagemUI<Reserva> {
     @Override
     protected String[] getLinha(Reserva reserva) {
         return new String[] {reserva.getArmario().getNumero(), reserva.getDataHoraDevolucao().toString()};
+    }
+
+    @Override
+    protected FormularioUI getTelaFormulario() {
+        return new ReservaFormUI();
     }
 
     @SuppressWarnings("unchecked")

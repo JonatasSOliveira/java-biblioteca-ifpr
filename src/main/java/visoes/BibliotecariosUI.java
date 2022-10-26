@@ -5,6 +5,7 @@ import java.util.List;
 import modelos.Bibliotecario;
 import respostas.CodigosResposta;
 import respostas.RespostaGenerica;
+import visoescomponentes.FormularioUI;
 import visoescomponentes.ListagemUI;
 
 /**
@@ -38,6 +39,11 @@ public final class BibliotecariosUI extends ListagemUI<Bibliotecario> {
         return new String[] {bibliotecario.getNome(), bibliotecario.getLogin(), bibliotecario.getNome() };
     }
 
+    @Override
+    protected FormularioUI getTelaFormulario() {
+        return new BibliotecarioFormUI();
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {

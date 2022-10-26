@@ -5,6 +5,7 @@ import java.util.List;
 import modelos.Estudante;
 import respostas.CodigosResposta;
 import respostas.RespostaGenerica;
+import visoescomponentes.FormularioUI;
 import visoescomponentes.ListagemUI;
 
 /**
@@ -36,6 +37,11 @@ public final class EstudantesUI extends ListagemUI<Estudante> {
     @Override
     protected String[] getLinha(Estudante estudante) {
         return new String[] {estudante.getRa(), estudante.getNome()};
+    }
+
+    @Override
+    protected FormularioUI getTelaFormulario() {
+        return new EstudanteFormUI();
     }
 
     @SuppressWarnings("unchecked")
