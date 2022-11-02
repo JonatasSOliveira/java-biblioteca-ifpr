@@ -24,7 +24,7 @@ public final class ReservasUI extends ListagemUI<Reserva> {
     }
 
     @Override
-    protected List<Reserva> buscarDados(String filtro) {
+    public List<Reserva> buscarDados(String filtro) {
         RespostaGenerica<List<Reserva>> resposta = ReservaControle.buscarPaginavelPorFiltro(1, filtro);
         
         if (resposta.getCodigoResposta() != CodigosResposta.CODIGO_200_SUCESSO) {

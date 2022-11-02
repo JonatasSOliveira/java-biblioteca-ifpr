@@ -19,11 +19,12 @@ public class DesktopUI extends JFrame {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.menuBar.setVisible(false);
+        this.verificarSessao();
     }
     
     private void verificarSessao() {
         Bibliotecario sessaoBibliotecario = SessaoBibliotecario.getBibliotecarioLogado();
-        boolean bibliotecarioEstaLogado = sessaoBibliotecario != null;
+        boolean bibliotecarioEstaLogado = true; //sessaoBibliotecario != null;
         this.menuBar.setVisible(bibliotecarioEstaLogado);
     }
     

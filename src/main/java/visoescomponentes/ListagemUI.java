@@ -1,9 +1,12 @@
 package visoescomponentes;
 
 import java.util.List;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 import javax.swing.table.DefaultTableModel;
 
 public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
+
     private final DefaultTableModel tableModel = new DefaultTableModel();
 
     public ListagemUI() {
@@ -11,13 +14,13 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
         initComponents();
         this.carregaDados(null);
     }
-    
+
     private void montaCabecalhos() {
         for (String cabecalhoColuna : this.getCabecalhosColunas()) {
             this.tableModel.addColumn(cabecalhoColuna);
         }
     }
-    
+
     private void carregaDados(String filtro) {
         int rowCount = this.tableModel.getRowCount();
         for (int i = rowCount - 1; i >= 0; i--) {
@@ -33,11 +36,11 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
     }
 
     protected abstract String[] getCabecalhosColunas();
-    
+
     protected abstract List<T> buscarDados(String filtro);
-    
+
     protected abstract String[] getLinha(T entidade);
-    
+
     protected abstract FormularioUI getTelaFormulario();
 
     @SuppressWarnings("unchecked")
@@ -47,10 +50,13 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
         painelFiltros = new javax.swing.JPanel();
         btnBuscar = new javax.swing.JButton();
         inputFiltro = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnNovo = new javax.swing.JButton();
         painelTabela = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+
+        setClosable(true);
+        setMaximizable(true);
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -59,10 +65,10 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("Novo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnNovo.setText("Novo");
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnNovoActionPerformed(evt);
             }
         });
 
@@ -78,7 +84,7 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscar))
                     .addGroup(painelFiltrosLayout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnNovo)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -90,7 +96,7 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
                     .addComponent(btnBuscar)
                     .addComponent(inputFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(btnNovo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -117,21 +123,31 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-                       
+
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         this.carregaDados(this.inputFiltro.getText());
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-      
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        FormularioUI formUI = this.getTelaFormulario();
+        this.getParent().add(formUI);
+
+        ListagemUI listageUI = this;
+        formUI.addInternalFrameListener(new InternalFrameAdapter() {
+            @Override
+            public void internalFrameClosing(InternalFrameEvent e) {
+                listageUI.carregaDados(null);
+            }
+        });
+        formUI.setVisible(true);
+    }//GEN-LAST:event_btnNovoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnNovo;
     private javax.swing.JTextField inputFiltro;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel painelFiltros;

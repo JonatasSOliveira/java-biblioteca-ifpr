@@ -18,4 +18,8 @@ public class EstudanteControle {
     public static RespostaGenerica<List<Estudante>> buscarPaginavelPorFiltro(int pagina, String filtro) {
         return EstudanteServico.buscarPaginavelPorFiltro(pagina, filtro);
     }
+    
+    public static RespostaGenerica criar(Estudante estudante) {
+        return EstudanteServico.criar(estudante);
+    }
 }

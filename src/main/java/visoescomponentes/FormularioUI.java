@@ -4,21 +4,54 @@
  */
 package visoescomponentes;
 
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JPanel;
+import visoes.LoginUI;
+
 /**
  *
  * @author Aluno
  */
-public abstract class FormularioUI extends javax.swing.JInternalFrame {
+public abstract class FormularioUI<T> extends javax.swing.JInternalFrame {
     
     /**
      * Creates new form NewJInternalFrame
      */
     public FormularioUI() {
-        initComponents();
+    }
+    
+    private void addPanelForm() {
+        javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
+        panelPrincipal.setLayout(panelPrincipalLayout);
+        panelPrincipalLayout.setHorizontalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(this.getPanelForm(), javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        panelPrincipalLayout.setVerticalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(this.getPanelForm(), javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+    }
+    
+    private void fechar() {
+        try {
+            this.setClosed(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(LoginUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    protected void iniciarComponentes() {
+        this.initComponents();
+        this.addPanelForm();
     }
     
     protected abstract void salvar();
-
+    
+    protected abstract JPanel getPanelForm();
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,21 +61,90 @@ public abstract class FormularioUI extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnCancelar = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
+        panelPrincipal = new javax.swing.JPanel();
+        aaaaaateste = new javax.swing.JPanel();
+
+        setClosable(true);
+        setMaximizable(true);
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout aaaaaatesteLayout = new javax.swing.GroupLayout(aaaaaateste);
+        aaaaaateste.setLayout(aaaaaatesteLayout);
+        aaaaaatesteLayout.setHorizontalGroup(
+            aaaaaatesteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        aaaaaatesteLayout.setVerticalGroup(
+            aaaaaatesteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 237, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
+        panelPrincipal.setLayout(panelPrincipalLayout);
+        panelPrincipalLayout.setHorizontalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(aaaaaateste, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        panelPrincipalLayout.setVerticalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(aaaaaateste, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnCancelar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
+                .addComponent(btnSalvar)
+                .addContainerGap())
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalvar)
+                    .addComponent(btnCancelar))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.fechar();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        this.salvar();
+        this.fechar();
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel aaaaaateste;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
 }

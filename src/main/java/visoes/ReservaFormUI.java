@@ -4,6 +4,7 @@
  */
 package visoes;
 
+import javax.swing.JPanel;
 import visoescomponentes.FormularioUI;
 
 /**
@@ -20,10 +21,10 @@ public class ReservaFormUI extends FormularioUI {
     }
     
     @Override
-    protected void salvar() {
+    protected JPanel getPanelForm() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,6 +47,11 @@ public class ReservaFormUI extends FormularioUI {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    @Override
+    protected void salvar() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

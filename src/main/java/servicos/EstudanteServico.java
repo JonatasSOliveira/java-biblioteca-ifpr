@@ -7,7 +7,6 @@ import respostas.CodigosResposta;
 import respostas.RespostaGenerica;
 
 public class EstudanteServico {
-
     private static EstudanteDAO dao = new EstudanteDAO();
 
     public static RespostaGenerica<Estudante> autenticar(String ra, String senha) {
@@ -23,5 +22,14 @@ public class EstudanteServico {
     public static RespostaGenerica<List<Estudante>> buscarPaginavelPorFiltro(int pagina, String filtro) {
         List<Estudante> estudantes = dao.buscarPaginavelPorFiltro(pagina, filtro);
         return new RespostaGenerica<>(CodigosResposta.CODIGO_200_SUCESSO, estudantes);
+    }
+    
+    public static RespostaGenerica criar(Estudante estudante) {
+        try {
+            dao.criar(estudante);
+            return new RespostaGenerica(CodigosResposta.CODIGO_200_SUCESSO);
+        } catch (Exception e) {
+            return new RespostaGenerica(CodigosResposta.CODIGO_500_ERRO_INTERNO);
+        }
     }
 }

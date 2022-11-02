@@ -24,7 +24,7 @@ public final class BibliotecariosUI extends ListagemUI<Bibliotecario> {
     }
 
     @Override
-    protected List<Bibliotecario> buscarDados(String filtro) {
+    public List<Bibliotecario> buscarDados(String filtro) {
         RespostaGenerica<List<Bibliotecario>> resposta = BibliotecarioControle.buscarPaginavelPorFiltro(1, filtro);
         
         if (resposta.getCodigoResposta() != CodigosResposta.CODIGO_200_SUCESSO) {
