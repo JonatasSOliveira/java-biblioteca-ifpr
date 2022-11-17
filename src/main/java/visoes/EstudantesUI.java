@@ -40,7 +40,7 @@ public final class EstudantesUI extends ListagemUI<Estudante> {
     }
 
     @Override
-    protected FormularioUI getTelaFormulario() {
+    protected FormularioUI getTelaFormulario(Estudante estudanteEdicao) {
         return new EstudanteFormUI();
     }
 

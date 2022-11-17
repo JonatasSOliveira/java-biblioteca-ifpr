@@ -8,12 +8,21 @@ import javax.swing.table.DefaultTableModel;
 public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
 
     private final DefaultTableModel tableModel = new DefaultTableModel();
+    private List<T> listaDados;
 
     public ListagemUI() {
         this.montaCabecalhos();
         initComponents();
         this.carregaDados(null);
     }
+    
+    protected abstract String[] getCabecalhosColunas();
+
+    protected abstract List<T> buscarDados(String filtro);
+
+    protected abstract String[] getLinha(T entidade);
+
+    protected abstract FormularioUI getTelaFormulario(T dadoEdicao);
 
     private void montaCabecalhos() {
         for (String cabecalhoColuna : this.getCabecalhosColunas()) {
@@ -26,22 +35,28 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
         for (int i = rowCount - 1; i >= 0; i--) {
             this.tableModel.removeRow(i);
         }
-        List<T> listaDados = this.buscarDados(filtro);
+        this.listaDados = this.buscarDados(filtro);
 
-        if (listaDados != null) {
-            for (T entidade : listaDados) {
+        if (this.listaDados != null) {
+            for (T entidade : this.listaDados) {
                 this.tableModel.addRow(this.getLinha(entidade));
             }
         }
     }
 
-    protected abstract String[] getCabecalhosColunas();
+    private void abrirFormulario(T dadoEdicao) {
+        FormularioUI formUI = this.getTelaFormulario(dadoEdicao);
+        this.getParent().add(formUI);
 
-    protected abstract List<T> buscarDados(String filtro);
-
-    protected abstract String[] getLinha(T entidade);
-
-    protected abstract FormularioUI getTelaFormulario();
+        ListagemUI listageUI = this;
+        formUI.addInternalFrameListener(new InternalFrameAdapter() {
+            @Override
+            public void internalFrameClosing(InternalFrameEvent e) {
+                listageUI.carregaDados(null);
+            }
+        });
+        formUI.setVisible(true);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -51,9 +66,11 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
         btnBuscar = new javax.swing.JButton();
         inputFiltro = new javax.swing.JTextField();
         btnNovo = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         painelTabela = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        dataTable = new javax.swing.JTable();
 
         setClosable(true);
         setMaximizable(true);
@@ -72,6 +89,15 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
             }
         });
 
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Excluir");
+
         javax.swing.GroupLayout painelFiltrosLayout = new javax.swing.GroupLayout(painelFiltros);
         painelFiltros.setLayout(painelFiltrosLayout);
         painelFiltrosLayout.setHorizontalGroup(
@@ -85,7 +111,11 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
                         .addComponent(btnBuscar))
                     .addGroup(painelFiltrosLayout.createSequentialGroup()
                         .addComponent(btnNovo)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEditar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(0, 145, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         painelFiltrosLayout.setVerticalGroup(
@@ -96,14 +126,17 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
                     .addComponent(btnBuscar)
                     .addComponent(inputFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnNovo)
+                .addGroup(painelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNovo)
+                    .addComponent(btnEditar)
+                    .addComponent(jButton2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(painelFiltros, java.awt.BorderLayout.PAGE_START);
 
-        jTable1.setModel(tableModel);
-        jScrollPane1.setViewportView(jTable1);
+        dataTable.setModel(tableModel);
+        jScrollPane1.setViewportView(dataTable);
 
         javax.swing.GroupLayout painelTabelaLayout = new javax.swing.GroupLayout(painelTabela);
         painelTabela.setLayout(painelTabelaLayout);
@@ -111,8 +144,8 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
             painelTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelTabelaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+                .addContainerGap())
         );
         painelTabelaLayout.setVerticalGroup(
             painelTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,26 +163,24 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        FormularioUI formUI = this.getTelaFormulario();
-        this.getParent().add(formUI);
-
-        ListagemUI listageUI = this;
-        formUI.addInternalFrameListener(new InternalFrameAdapter() {
-            @Override
-            public void internalFrameClosing(InternalFrameEvent e) {
-                listageUI.carregaDados(null);
-            }
-        });
-        formUI.setVisible(true);
+        this.abrirFormulario(null);
     }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        int rowIndex = this.dataTable.getSelectedRow();
+        T dadoEdicao = this.listaDados.get(rowIndex);
+        this.abrirFormulario(dadoEdicao);
+    }//GEN-LAST:event_btnEditarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnNovo;
+    private javax.swing.JTable dataTable;
     private javax.swing.JTextField inputFiltro;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel painelFiltros;
     private javax.swing.JPanel painelTabela;
     // End of variables declaration//GEN-END:variables

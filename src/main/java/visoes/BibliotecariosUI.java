@@ -40,7 +40,7 @@ public final class BibliotecariosUI extends ListagemUI<Bibliotecario> {
     }
 
     @Override
-    protected FormularioUI getTelaFormulario() {
+    protected FormularioUI getTelaFormulario(Bibliotecario bibliotecarioEdicao) {
         return new BibliotecarioFormUI();
     }
     
