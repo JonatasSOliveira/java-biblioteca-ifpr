@@ -32,4 +32,13 @@ public class EstudanteServico {
             return new RespostaGenerica(CodigosResposta.CODIGO_500_ERRO_INTERNO);
         }
     }
+    
+    public static RespostaGenerica excluir(Estudante estudante) {
+        try {
+            dao.excluir(estudante);
+            return new RespostaGenerica(CodigosResposta.CODIGO_200_SUCESSO);
+        } catch (Exception e) {
+            return new RespostaGenerica(CodigosResposta.CODIGO_500_ERRO_INTERNO);
+        }
+    }
 }

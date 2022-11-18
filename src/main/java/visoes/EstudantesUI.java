@@ -41,7 +41,12 @@ public final class EstudantesUI extends ListagemUI<Estudante> {
 
     @Override
     protected FormularioUI getTelaFormulario(Estudante estudanteEdicao) {
-        return new EstudanteFormUI();
+        return new EstudanteFormUI(estudanteEdicao);
+    }
+
+    @Override
+    protected void excluir(Estudante entidade) {
+        EstudanteControle.excluir(entidade);
     }
 
     @SuppressWarnings("unchecked")

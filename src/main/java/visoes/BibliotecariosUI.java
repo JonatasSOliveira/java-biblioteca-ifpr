@@ -43,6 +43,11 @@ public final class BibliotecariosUI extends ListagemUI<Bibliotecario> {
     protected FormularioUI getTelaFormulario(Bibliotecario bibliotecarioEdicao) {
         return new BibliotecarioFormUI();
     }
+
+    @Override
+    protected void excluir(Bibliotecario entidade) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          

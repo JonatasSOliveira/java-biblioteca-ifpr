@@ -42,8 +42,13 @@ public final class ReservasUI extends ListagemUI<Reserva> {
     @Override
     protected FormularioUI getTelaFormulario(Reserva reservaEdicao) {
         return new ReservaFormUI();
-    }
+   }
 
+    @Override
+    protected void excluir(Reserva entidade) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {

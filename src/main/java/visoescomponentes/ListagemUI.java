@@ -24,6 +24,8 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
     protected abstract String[] getLinha(T entidade);
 
     protected abstract FormularioUI getTelaFormulario(T dadoEdicao);
+    
+    protected abstract void excluir(T entidade);
 
     private void montaCabecalhos() {
         for (String cabecalhoColuna : this.getCabecalhosColunas()) {
@@ -68,7 +70,7 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
         );
     }
     
-    private T getDadosLinhaSelecionada() throws IndexOutOfBoundsException{
+    private T getEntidadeSelecionada() throws IndexOutOfBoundsException{
         int rowIndex = this.dataTable.getSelectedRow();
         
         if (rowIndex == -1) {            
@@ -193,7 +195,7 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try {
-            this.abrirFormulario(this.getDadosLinhaSelecionada());
+            this.abrirFormulario(this.getEntidadeSelecionada());
         } catch (IndexOutOfBoundsException e) {
             this.abrirDialogAviso(e.getMessage());
         }
@@ -201,7 +203,7 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         try {
-            T dadosLinhaSelecionada = this.getDadosLinhaSelecionada();
+            T entidadeSelecionada = this.getEntidadeSelecionada();
             Object[] options = { "Não", "Sim" }; 
             
             int opcaoSelecionada = JOptionPane.showOptionDialog(
@@ -219,7 +221,8 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
                     
             
             if (exclusaoConfirmada) {
-                
+                this.excluir(entidadeSelecionada);
+                this.carregaDados(null);
             }
         } catch (IndexOutOfBoundsException e) {
             this.abrirDialogAviso(e.getMessage());

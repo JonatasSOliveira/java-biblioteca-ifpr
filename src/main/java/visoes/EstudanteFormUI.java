@@ -8,17 +8,15 @@ import visoescomponentes.FormularioUI;
 public class EstudanteFormUI extends FormularioUI {
     private Estudante estudanteEmEdicao = null;
     
-
-    public EstudanteFormUI() {
+    public EstudanteFormUI(Estudante estudante) {
         super();
         initComponents();
         super.iniciarComponentes();
-    }
-    
-    public EstudanteFormUI(Estudante estudante) {
-        this();
         
-        if (estudante == null) return;
+        if (estudante == null) {
+            this.estudanteEmEdicao = new Estudante();
+            return;
+        }
         
         this.inputNome.setText(estudante.getNome());
         this.inputRA.setText(estudante.getRa());
@@ -35,12 +33,7 @@ public class EstudanteFormUI extends FormularioUI {
     
      @Override
     protected void salvar() {
-        Estudante estudante; 
-        
-        if (this.estudanteEmEdicao == null)
-            estudante = new Estudante();
-        else 
-            estudante = this.estudanteEmEdicao;
+        Estudante estudante = this.estudanteEmEdicao;
             
         estudante.setNome(this.inputNome.getText());
         estudante.setRa(this.inputRA.getText());
