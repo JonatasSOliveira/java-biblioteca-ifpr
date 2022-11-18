@@ -6,12 +6,27 @@ import servicos.EstudanteServico;
 import visoescomponentes.FormularioUI;
 
 public class EstudanteFormUI extends FormularioUI {
+    private Estudante estudanteEmEdicao = null;
+    
 
     public EstudanteFormUI() {
         super();
         initComponents();
         super.iniciarComponentes();
     }
+    
+    public EstudanteFormUI(Estudante estudante) {
+        this();
+        
+        if (estudante == null) return;
+        
+        this.inputNome.setText(estudante.getNome());
+        this.inputRA.setText(estudante.getRa());
+        this.inputEmail.setText(estudante.getEmail());
+        this.inputTelefone.setText(estudante.getTelefone());
+        this.estudanteEmEdicao = estudante;
+    }
+        
 
     @Override
     protected JPanel getPanelForm() {
@@ -20,7 +35,13 @@ public class EstudanteFormUI extends FormularioUI {
     
      @Override
     protected void salvar() {
-        Estudante estudante = new Estudante();
+        Estudante estudante; 
+        
+        if (this.estudanteEmEdicao == null)
+            estudante = new Estudante();
+        else 
+            estudante = this.estudanteEmEdicao;
+            
         estudante.setNome(this.inputNome.getText());
         estudante.setRa(this.inputRA.getText());
         estudante.setEmail(this.inputEmail.getText());

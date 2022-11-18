@@ -1,6 +1,7 @@
 package visoescomponentes;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.table.DefaultTableModel;
@@ -57,6 +58,25 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
         });
         formUI.setVisible(true);
     }
+    
+    private void abrirDialogAviso(String mensagem) {
+        JOptionPane.showMessageDialog(
+            this, 
+            mensagem, 
+            "Atenção", 
+            JOptionPane.WARNING_MESSAGE
+        );
+    }
+    
+    private T getDadosLinhaSelecionada() throws IndexOutOfBoundsException{
+        int rowIndex = this.dataTable.getSelectedRow();
+        
+        if (rowIndex == -1) {            
+            throw new IndexOutOfBoundsException("Você deve selecionar uma linha para utilizar esse recurso");
+        }
+        
+        return this.listaDados.get(rowIndex);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -67,7 +87,7 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
         inputFiltro = new javax.swing.JTextField();
         btnNovo = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         painelTabela = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         dataTable = new javax.swing.JTable();
@@ -96,7 +116,12 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("Excluir");
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelFiltrosLayout = new javax.swing.GroupLayout(painelFiltros);
         painelFiltros.setLayout(painelFiltrosLayout);
@@ -114,7 +139,7 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnEditar)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(btnExcluir)
                         .addGap(0, 145, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -129,7 +154,7 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
                 .addGroup(painelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo)
                     .addComponent(btnEditar)
-                    .addComponent(jButton2))
+                    .addComponent(btnExcluir))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -167,19 +192,48 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        int rowIndex = this.dataTable.getSelectedRow();
-        T dadoEdicao = this.listaDados.get(rowIndex);
-        this.abrirFormulario(dadoEdicao);
+        try {
+            this.abrirFormulario(this.getDadosLinhaSelecionada());
+        } catch (IndexOutOfBoundsException e) {
+            this.abrirDialogAviso(e.getMessage());
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        try {
+            T dadosLinhaSelecionada = this.getDadosLinhaSelecionada();
+            Object[] options = { "Não", "Sim" }; 
+            
+            int opcaoSelecionada = JOptionPane.showOptionDialog(
+                this, 
+                "Realmente deseja excluir o item selecionado?", 
+                "Atenção",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.WARNING_MESSAGE,
+                null, 
+                options,
+                options[0]
+            );
+            
+            boolean exclusaoConfirmada = opcaoSelecionada == 1;
+                    
+            
+            if (exclusaoConfirmada) {
+                
+            }
+        } catch (IndexOutOfBoundsException e) {
+            this.abrirDialogAviso(e.getMessage());
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnNovo;
     private javax.swing.JTable dataTable;
     private javax.swing.JTextField inputFiltro;
-    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel painelFiltros;
     private javax.swing.JPanel painelTabela;
