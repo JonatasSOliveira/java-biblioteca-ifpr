@@ -6,14 +6,36 @@ package visoes;
 
 import java.awt.Event;
 import javax.swing.JPanel;
+import modelos.Estudante;
 import visoescomponentes.FormularioUI;
+import javax.swing.JPanel;
+import modelos.Bibliotecario;
+import servicos.BibliotecarioServico;
+import servicos.EstudanteServico;
 
 /**
  *
  * @author Aluno
  */
 public class BibliotecarioFormUI extends FormularioUI {
-
+    private Bibliotecario bibliotecarioEmEdicao = null;
+    
+    public BibliotecarioFormUI(Bibliotecario bibliotecario) {
+        super();
+        initComponents();
+        super.iniciarComponentes();
+        
+        if (bibliotecario == null) {
+            this.bibliotecarioEmEdicao = new Bibliotecario();
+            return;
+        }
+        
+        this.inputNome.setText(bibliotecario.getNome());
+        this.inputSiape.setText(bibliotecario.getSiape());
+        this.inputEmail.setText(bibliotecario.getEmail());
+        this.inputTelefone.setText(bibliotecario.getTelefone());
+        this.bibliotecarioEmEdicao = bibliotecario;
+    }
     /**
      * Creates new form BibliotecarioForm
      */
@@ -35,15 +57,92 @@ public class BibliotecarioFormUI extends FormularioUI {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        lbNome = new javax.swing.JLabel();
+        inputNome = new javax.swing.JTextField();
+        lbEmail = new javax.swing.JLabel();
+        inputEmail = new javax.swing.JTextField();
+        lbSiape = new javax.swing.JLabel();
+        inputSiape = new javax.swing.JTextField();
+        lbSenha = new javax.swing.JLabel();
+        inputSenha = new javax.swing.JPasswordField();
+        lbTelefone = new javax.swing.JLabel();
+        inputTelefone = new javax.swing.JTextField();
+
+        lbNome.setText("Nome:");
+
+        lbEmail.setText("Email:");
+
+        lbSiape.setText("Siape:");
+
+        lbSenha.setText("Senha:");
+
+        lbTelefone.setText("Telefone");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lbNome)
+                    .addComponent(lbSenha)
+                    .addComponent(lbTelefone)
+                    .addComponent(inputNome)
+                    .addComponent(inputTelefone)
+                    .addComponent(lbSiape)
+                    .addComponent(inputSiape)
+                    .addComponent(lbEmail)
+                    .addComponent(inputEmail)
+                    .addComponent(inputSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                .addContainerGap(177, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbNome)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lbSiape)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputSiape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lbEmail)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lbSenha)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lbTelefone)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGap(0, 304, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -51,10 +150,29 @@ public class BibliotecarioFormUI extends FormularioUI {
 
     @Override
     protected void salvar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Bibliotecario bibliotecario = this.bibliotecarioEmEdicao;
+            
+        bibliotecario.setNome(this.inputNome.getText());
+        bibliotecario.setSiape(this.inputSiape.getText());
+        bibliotecario.setEmail(this.inputEmail.getText());
+        bibliotecario.setSenha(new String(this.inputSenha.getPassword()));
+        bibliotecario.setTelefone(this.inputTelefone.getText());
+        
+        BibliotecarioServico.criar(bibliotecario);
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField inputEmail;
+    private javax.swing.JTextField inputNome;
+    private javax.swing.JPasswordField inputSenha;
+    private javax.swing.JTextField inputSiape;
+    private javax.swing.JTextField inputTelefone;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbEmail;
+    private javax.swing.JLabel lbNome;
+    private javax.swing.JLabel lbSenha;
+    private javax.swing.JLabel lbSiape;
+    private javax.swing.JLabel lbTelefone;
     // End of variables declaration//GEN-END:variables
 }
