@@ -14,4 +14,12 @@ public class BibliotecarioControle {
     public static RespostaGenerica<List<Bibliotecario>> buscarPaginavelPorFiltro(int pagina, String filtro) {
         return BibliotecarioServico.buscarPaginavelPorFiltro(pagina, filtro);
     }
+    
+    public static RespostaGenerica criar(Bibliotecario bibliotecario) {
+        return BibliotecarioServico.criar(bibliotecario);
+    }
+     
+     public static RespostaGenerica atualizar(Bibliotecario bibliotecario) {
+        return BibliotecarioServico.atualizar(bibliotecario);
+    }
 }

@@ -41,6 +41,15 @@ public class BibliotecarioServico {
         }
     }
      
+     public static RespostaGenerica atualizar(Bibliotecario bibliotecario) {
+        try {
+            dao.atualizar(bibliotecario);
+            return new RespostaGenerica(CodigosResposta.CODIGO_200_SUCESSO);
+        } catch (Exception e) {
+            return new RespostaGenerica(CodigosResposta.CODIGO_500_ERRO_INTERNO);
+        }
+    }
+     
     public static RespostaGenerica excluir(Bibliotecario bibliotecario) {
         try {
             dao.excluir(bibliotecario);

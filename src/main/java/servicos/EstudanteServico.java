@@ -33,6 +33,15 @@ public class EstudanteServico {
         }
     }
     
+    public static RespostaGenerica atualizar(Estudante estudante) {
+        try {
+            dao.atualizar(estudante);
+            return new RespostaGenerica(CodigosResposta.CODIGO_200_SUCESSO);
+        } catch (Exception e) {
+            return new RespostaGenerica(CodigosResposta.CODIGO_500_ERRO_INTERNO);
+        }
+    }
+    
     public static RespostaGenerica excluir(Estudante estudante) {
         try {
             dao.excluir(estudante);

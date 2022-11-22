@@ -53,6 +53,10 @@ public class Pessoa {
         this.senha = senha;
         this.ativo = ativo;
     }
+    
+    public Long getId() {
+        return this.id;
+    }
 
     public String getNome() {
         return nome;

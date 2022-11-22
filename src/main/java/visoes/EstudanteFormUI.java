@@ -1,8 +1,8 @@
 package visoes;
 
+import controles.EstudanteControle;
 import javax.swing.JPanel;
 import modelos.Estudante;
-import servicos.EstudanteServico;
 import visoescomponentes.FormularioUI;
 
 public class EstudanteFormUI extends FormularioUI {
@@ -41,7 +41,11 @@ public class EstudanteFormUI extends FormularioUI {
         estudante.setSenha(new String(this.inputSenha.getPassword()));
         estudante.setTelefone(this.inputTelefone.getText());
         
-        EstudanteServico.criar(estudante);
+        if (estudante.getId() != null) {
+            EstudanteControle.atualizar(estudante);
+        } else {
+            EstudanteControle.criar(estudante);
+        }
     }
     
     /**

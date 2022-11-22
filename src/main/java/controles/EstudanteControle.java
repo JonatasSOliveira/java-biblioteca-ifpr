@@ -23,6 +23,10 @@ public class EstudanteControle {
         return EstudanteServico.criar(estudante);
     }
     
+    public static RespostaGenerica atualizar(Estudante estudante) {
+        return EstudanteServico.atualizar(estudante);
+    }
+    
     public static RespostaGenerica excluir(Estudante estudante) {
         return EstudanteServico.excluir(estudante);
     }

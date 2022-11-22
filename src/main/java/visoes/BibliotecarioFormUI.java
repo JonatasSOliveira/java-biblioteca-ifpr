@@ -1,22 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package visoes;
 
-import java.awt.Event;
-import javax.swing.JPanel;
-import modelos.Estudante;
+import controles.BibliotecarioControle;
 import visoescomponentes.FormularioUI;
 import javax.swing.JPanel;
 import modelos.Bibliotecario;
-import servicos.BibliotecarioServico;
-import servicos.EstudanteServico;
 
-/**
- *
- * @author Aluno
- */
 public class BibliotecarioFormUI extends FormularioUI {
     private Bibliotecario bibliotecarioEmEdicao = null;
     
@@ -158,7 +146,11 @@ public class BibliotecarioFormUI extends FormularioUI {
         bibliotecario.setSenha(new String(this.inputSenha.getPassword()));
         bibliotecario.setTelefone(this.inputTelefone.getText());
         
-        BibliotecarioServico.criar(bibliotecario);
+        if (bibliotecario.getId() != null) {
+            BibliotecarioControle.atualizar(bibliotecario);
+        } else {
+            BibliotecarioControle.criar(bibliotecario);
+        }
     }
 
 
