@@ -1,20 +1,48 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package visoes;
 
-/**
- *
- * @author Aluno
- */
-public class ArmariosUI extends javax.swing.JInternalFrame {
+import controles.ArmarioControle;
+import java.util.List;
+import modelos.Armario;
+import respostas.CodigosResposta;
+import respostas.RespostaGenerica;
+import visoescomponentes.FormularioUI;
+import visoescomponentes.ListagemUI;
 
-    /**
-     * Creates new form ArmariosUI
-     */
+public class ArmariosUI extends ListagemUI<Armario> {
+
     public ArmariosUI() {
-        initComponents();
+        super();
+    }
+
+    @Override
+    protected FormularioUI getTelaFormulario(Armario armarioEmEdicao) {
+        return new ArmarioFormUI(armarioEmEdicao);
+    }
+
+    @Override
+    protected void excluir(Armario excluir) {
+        ArmarioControle.excluir(excluir);
+    }
+
+    @Override
+    protected String[] getLinha(Armario armario) {
+        return new String[]{armario.getNumero(), armario.getNumero()};
+    }
+
+    @Override
+    protected List<Armario> buscarDados(String filtro) {
+        RespostaGenerica<List<Armario>> resposta = ArmarioControle.buscarPaginavelPorFiltro(1, filtro);
+
+        if (resposta.getCodigoResposta() != CodigosResposta.CODIGO_200_SUCESSO) {
+            throw new Error();
+        }
+
+        return resposta.getData();
+    }
+
+    @Override
+    protected String[] getCabecalhosColunas() {
+        return new String[]{"Numero", "Obs"};
     }
 
     /**

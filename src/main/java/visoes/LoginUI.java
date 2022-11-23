@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package visoes;
 
 import controles.BibliotecarioControle;
@@ -18,16 +14,12 @@ import respostas.RespostaGenerica;
 
 import sessao.SessaoBibliotecario;
 
-/**
- *
- * @author Jonatas Oliveira
- */
 public class LoginUI extends javax.swing.JInternalFrame {
 
     public LoginUI() {
         initComponents();
     }
-    
+
     private void fechar() {
         try {
             this.setClosed(true);

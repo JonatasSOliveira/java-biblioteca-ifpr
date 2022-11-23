@@ -1,8 +1,9 @@
 package util;
 
 public class Coordenada {
-    private int pontoX;
-    private int pontoY;
+
+    private final int pontoX;
+    private final int pontoY;
 
     public Coordenada(int pontoX, int pontoY) {
         this.pontoX = pontoX;

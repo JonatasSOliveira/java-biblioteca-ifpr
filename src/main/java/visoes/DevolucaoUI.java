@@ -1,10 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package visoes;
 
-import controles.DevolucaoControler;
 import controles.ReservaControle;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
@@ -14,15 +9,8 @@ import respostas.RespostaGenerica;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author user
- */
 public class DevolucaoUI extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form DevolucaoUI
-     */
     public DevolucaoUI() {
         initComponents();
     }

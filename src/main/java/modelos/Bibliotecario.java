@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "bibliotecario")
-@PrimaryKeyJoinColumn(name="id_pessoa")
+@PrimaryKeyJoinColumn(name = "id_pessoa")
 public class Bibliotecario extends Pessoa {
 
     @Column(name = "siapie", nullable = false, unique = true)
@@ -28,7 +28,7 @@ public class Bibliotecario extends Pessoa {
         this.siape = siape;
         this.login = login;
     }
-    
+
     public String getSiape() {
         return siape;
     }
@@ -36,7 +36,7 @@ public class Bibliotecario extends Pessoa {
     public void setSiape(String siape) {
         this.siape = siape;
     }
-    
+
     public String getLogin() {
         return login;
     }

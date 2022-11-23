@@ -7,7 +7,8 @@ import javax.persistence.*;
 import java.util.Date;
 import org.hibernate.annotations.ColumnTransformer;
 
-@Entity@Table(name = "pessoa")
+@Entity
+@Table(name = "pessoa")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Pessoa {
 
@@ -26,8 +27,8 @@ public class Pessoa {
     private String telefone;
 
     @Column(name = "senha", nullable = false)
-    @ColumnTransformer(        
-        write = "MD5(?)"
+    @ColumnTransformer(
+            write = "MD5(?)"
     )
     private String senha;
 
@@ -42,7 +43,6 @@ public class Pessoa {
     @UpdateTimestamp
     private Date dataAtualizacao;
 
-
     public Pessoa() {
     }
 
@@ -53,7 +53,7 @@ public class Pessoa {
         this.senha = senha;
         this.ativo = ativo;
     }
-    
+
     public Long getId() {
         return this.id;
     }

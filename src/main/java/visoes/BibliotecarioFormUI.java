@@ -6,36 +6,31 @@ import javax.swing.JPanel;
 import modelos.Bibliotecario;
 
 public class BibliotecarioFormUI extends FormularioUI {
-    private Bibliotecario bibliotecarioEmEdicao = null;
-    
-    public BibliotecarioFormUI(Bibliotecario bibliotecario) {
+
+    private final Bibliotecario bibliotecarioEmEdicao;
+
+    public BibliotecarioFormUI(Bibliotecario bibliotecarioEmEdicao) {
         super();
         initComponents();
         super.iniciarComponentes();
-        
-        if (bibliotecario == null) {
+
+        if (bibliotecarioEmEdicao == null) {
             this.bibliotecarioEmEdicao = new Bibliotecario();
             return;
         }
-        
-        this.inputNome.setText(bibliotecario.getNome());
-        this.inputSiape.setText(bibliotecario.getSiape());
-        this.inputEmail.setText(bibliotecario.getEmail());
-        this.inputTelefone.setText(bibliotecario.getTelefone());
-        this.bibliotecarioEmEdicao = bibliotecario;
+
+        this.inputNome.setText(bibliotecarioEmEdicao.getNome());
+        this.inputSiape.setText(bibliotecarioEmEdicao.getSiape());
+        this.inputEmail.setText(bibliotecarioEmEdicao.getEmail());
+        this.inputTelefone.setText(bibliotecarioEmEdicao.getTelefone());
+        this.bibliotecarioEmEdicao = bibliotecarioEmEdicao;
     }
-    /**
-     * Creates new form BibliotecarioForm
-     */
-    public BibliotecarioFormUI() {
-        initComponents();
-    }
- 
+
     @Override
     protected JPanel getPanelForm() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.jPanel1;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -139,13 +134,13 @@ public class BibliotecarioFormUI extends FormularioUI {
     @Override
     protected void salvar() {
         Bibliotecario bibliotecario = this.bibliotecarioEmEdicao;
-            
+
         bibliotecario.setNome(this.inputNome.getText());
         bibliotecario.setSiape(this.inputSiape.getText());
         bibliotecario.setEmail(this.inputEmail.getText());
         bibliotecario.setSenha(new String(this.inputSenha.getPassword()));
         bibliotecario.setTelefone(this.inputTelefone.getText());
-        
+
         if (bibliotecario.getId() != null) {
             BibliotecarioControle.atualizar(bibliotecario);
         } else {

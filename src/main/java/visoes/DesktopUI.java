@@ -21,13 +21,13 @@ public class DesktopUI extends JFrame {
         this.menuBar.setVisible(false);
         this.verificarSessao();
     }
-    
+
     private void verificarSessao() {
         Bibliotecario sessaoBibliotecario = SessaoBibliotecario.getBibliotecarioLogado();
         boolean bibliotecarioEstaLogado = true; //sessaoBibliotecario != null;
         this.menuBar.setVisible(bibliotecarioEstaLogado);
     }
-    
+
     private static Coordenada getCentroTela(int larguraJanela, int alturaJanela) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         return new Coordenada(
@@ -36,24 +36,24 @@ public class DesktopUI extends JFrame {
         );
 
     }
-    
-    private void iniciarInternalFrame(JInternalFrame internalFrame) {        
-       this.desktopPane.removeAll();
-       repaint();
-       Dimension internalFrameSize = internalFrame.getSize();
-       Coordenada coordenadaCentro = DesktopUI.getCentroTela(internalFrameSize.width, internalFrameSize.height);
-       this.desktopPane.add(internalFrame);
-       DesktopUI desktopUI = this;
-       internalFrame.addInternalFrameListener(new InternalFrameAdapter() {
-           @Override
-           public void internalFrameClosing(InternalFrameEvent e) {
-               desktopUI.verificarSessao();
-           }           
-       });
-       internalFrame.setLocation(coordenadaCentro.getPontoX(), coordenadaCentro.getPontoY());
-       internalFrame.setVisible(true);       
+
+    private void iniciarInternalFrame(JInternalFrame internalFrame) {
+        this.desktopPane.removeAll();
+        repaint();
+        Dimension internalFrameSize = internalFrame.getSize();
+        Coordenada coordenadaCentro = DesktopUI.getCentroTela(internalFrameSize.width, internalFrameSize.height);
+        this.desktopPane.add(internalFrame);
+        DesktopUI desktopUI = this;
+        internalFrame.addInternalFrameListener(new InternalFrameAdapter() {
+            @Override
+            public void internalFrameClosing(InternalFrameEvent e) {
+                desktopUI.verificarSessao();
+            }
+        });
+        internalFrame.setLocation(coordenadaCentro.getPontoX(), coordenadaCentro.getPontoY());
+        internalFrame.setVisible(true);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

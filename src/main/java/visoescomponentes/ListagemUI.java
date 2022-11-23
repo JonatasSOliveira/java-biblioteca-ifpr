@@ -16,7 +16,7 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
         initComponents();
         this.carregaDados(null);
     }
-    
+
     protected abstract String[] getCabecalhosColunas();
 
     protected abstract List<T> buscarDados(String filtro);
@@ -24,7 +24,7 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
     protected abstract String[] getLinha(T entidade);
 
     protected abstract FormularioUI getTelaFormulario(T dadoEdicao);
-    
+
     protected abstract void excluir(T entidade);
 
     private void montaCabecalhos() {
@@ -60,23 +60,23 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
         });
         formUI.setVisible(true);
     }
-    
+
     private void abrirDialogAviso(String mensagem) {
         JOptionPane.showMessageDialog(
-            this, 
-            mensagem, 
-            "Atenção", 
-            JOptionPane.WARNING_MESSAGE
+                this,
+                mensagem,
+                "Atenção",
+                JOptionPane.WARNING_MESSAGE
         );
     }
-    
-    private T getEntidadeSelecionada() throws IndexOutOfBoundsException{
+
+    private T getEntidadeSelecionada() throws IndexOutOfBoundsException {
         int rowIndex = this.dataTable.getSelectedRow();
-        
-        if (rowIndex == -1) {            
+
+        if (rowIndex == -1) {
             throw new IndexOutOfBoundsException("Você deve selecionar uma linha para utilizar esse recurso");
         }
-        
+
         return this.listaDados.get(rowIndex);
     }
 
@@ -204,22 +204,21 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         try {
             T entidadeSelecionada = this.getEntidadeSelecionada();
-            Object[] options = { "Não", "Sim" }; 
-            
+            Object[] options = {"Não", "Sim"};
+
             int opcaoSelecionada = JOptionPane.showOptionDialog(
-                this, 
-                "Realmente deseja excluir o item selecionado?", 
-                "Atenção",
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.WARNING_MESSAGE,
-                null, 
-                options,
-                options[0]
+                    this,
+                    "Realmente deseja excluir o item selecionado?",
+                    "Atenção",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.WARNING_MESSAGE,
+                    null,
+                    options,
+                    options[0]
             );
-            
+
             boolean exclusaoConfirmada = opcaoSelecionada == 1;
-                    
-            
+
             if (exclusaoConfirmada) {
                 this.excluir(entidadeSelecionada);
                 this.carregaDados(null);

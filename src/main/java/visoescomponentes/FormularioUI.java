@@ -7,23 +7,23 @@ import javax.swing.JPanel;
 import visoes.LoginUI;
 
 public abstract class FormularioUI<T> extends javax.swing.JInternalFrame {
-    
+
     public FormularioUI() {
     }
-    
+
     private void addPanelForm() {
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
-            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(this.getPanelForm(), javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(this.getPanelForm(), javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelPrincipalLayout.setVerticalGroup(
-            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(this.getPanelForm(), javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(this.getPanelForm(), javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }
-    
+
     private void fechar() {
         try {
             this.setClosed(true);
@@ -31,16 +31,16 @@ public abstract class FormularioUI<T> extends javax.swing.JInternalFrame {
             Logger.getLogger(LoginUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     protected void iniciarComponentes() {
         this.initComponents();
         this.addPanelForm();
     }
-    
+
     protected abstract void salvar();
-    
+
     protected abstract JPanel getPanelForm();
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

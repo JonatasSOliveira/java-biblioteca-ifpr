@@ -6,48 +6,48 @@ import modelos.Estudante;
 import visoescomponentes.FormularioUI;
 
 public class EstudanteFormUI extends FormularioUI {
-    private Estudante estudanteEmEdicao = null;
-    
+
+    private final Estudante estudanteEmEdicao;
+
     public EstudanteFormUI(Estudante estudante) {
         super();
         initComponents();
         super.iniciarComponentes();
-        
+
         if (estudante == null) {
             this.estudanteEmEdicao = new Estudante();
             return;
         }
-        
+
         this.inputNome.setText(estudante.getNome());
         this.inputRA.setText(estudante.getRa());
         this.inputEmail.setText(estudante.getEmail());
         this.inputTelefone.setText(estudante.getTelefone());
         this.estudanteEmEdicao = estudante;
     }
-        
 
     @Override
     protected JPanel getPanelForm() {
         return this.panelForm;
     }
-    
-     @Override
+
+    @Override
     protected void salvar() {
         Estudante estudante = this.estudanteEmEdicao;
-            
+
         estudante.setNome(this.inputNome.getText());
         estudante.setRa(this.inputRA.getText());
         estudante.setEmail(this.inputEmail.getText());
         estudante.setSenha(new String(this.inputSenha.getPassword()));
         estudante.setTelefone(this.inputTelefone.getText());
-        
+
         if (estudante.getId() != null) {
             EstudanteControle.atualizar(estudante);
         } else {
             EstudanteControle.criar(estudante);
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -1,30 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package visoes;
 
 import javax.swing.JPanel;
 import visoescomponentes.FormularioUI;
 
-/**
- *
- * @author Aluno
- */
 public class ReservaFormUI extends FormularioUI {
-    
-    /**
-     * Creates new form BibliotecarioForm
-     */
+
     public ReservaFormUI() {
         super();
     }
-    
+
     @Override
     protected JPanel getPanelForm() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

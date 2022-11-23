@@ -22,7 +22,7 @@ public class Armario {
 
     @Column(name = "observacoes")
     private String observacoes;
-    
+
     @Column(name = "data_criacao", nullable = false)
     @CreationTimestamp
     private Date dataCriacao;
@@ -43,6 +43,10 @@ public class Armario {
         this.numero = numero;
         this.ativo = ativo;
         this.observacoes = observacoes;
+    }
+
+    public Long getId() {
+        return this.id;
     }
 
     public String getNumero() {

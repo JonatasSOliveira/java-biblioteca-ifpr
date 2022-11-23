@@ -30,7 +30,6 @@ public class ReservaServico {
                         "Armário não encontrado");
             }
 
-
             Reserva reservaPendente = dao.buscarPorEstudanteEDevolucaoNull(estudante);
 
             if (reservaPendente != null) {
@@ -58,12 +57,12 @@ public class ReservaServico {
         }
         return new RespostaGenerica<>(CodigosResposta.CODIGO_200_SUCESSO, true);
     }
-    
-    public static RespostaGenerica<Reserva> devolver (String ra, String senha, String numeroArmario) {
+
+    public static RespostaGenerica<Reserva> devolver(String ra, String senha, String numeroArmario) {
         return new RespostaGenerica<>(CodigosResposta.CODIGO_500_ERRO_INTERNO);
     }
-    
-     public static RespostaGenerica<List<Reserva>> buscarPaginavelPorFiltro(int pagina, String filtro) {
+
+    public static RespostaGenerica<List<Reserva>> buscarPaginavelPorFiltro(int pagina, String filtro) {
         List<Reserva> reserva = dao.buscarPaginavelPorFiltro(pagina, filtro);
         return new RespostaGenerica<>(CodigosResposta.CODIGO_200_SUCESSO, reserva);
     }
