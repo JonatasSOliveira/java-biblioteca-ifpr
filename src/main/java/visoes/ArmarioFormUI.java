@@ -10,7 +10,9 @@ public class ArmarioFormUI extends FormularioUI<Armario> {
     private final Armario armarioEmEdicao;
 
     public ArmarioFormUI(Armario armarioEmEdicao) {
+        super();
         initComponents();
+        super.iniciarComponentes();
 
         if (armarioEmEdicao == null) {
             this.armarioEmEdicao = new Armario();

@@ -9,6 +9,7 @@ controles\ArmarioControle.class
 main\Main.class
 visoes\ReservasUI.class
 servicos\EstudanteServico.class
+visoes\ArmariosUI.class
 visoes\DesktopUI$2.class
 visoes\DevolucaoUI$1.class
 visoescomponentes\FormularioUI$2.class
@@ -50,6 +51,7 @@ visoes\DesktopUI$1.class
 visoes\DesktopUI$4.class
 modelos\Bibliotecario.class
 modelos\Pessoa.class
+visoes\ArmarioFormUI.class
 visoes\ReservaFormUI.class
 respostas\CodigosResposta.class
 visoescomponentes\ListagemUI.class

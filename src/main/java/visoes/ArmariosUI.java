@@ -26,7 +26,7 @@ public class ArmariosUI extends ListagemUI<Armario> {
 
     @Override
     protected String[] getLinha(Armario armario) {
-        return new String[]{armario.getNumero(), armario.getNumero()};
+        return new String[]{armario.getNumero(), armario.getObservacoes()};
     }
 
     @Override
