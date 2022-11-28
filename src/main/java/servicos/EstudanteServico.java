@@ -24,6 +24,11 @@ public class EstudanteServico {
         List<Estudante> estudantes = dao.buscarPaginavelPorFiltro(pagina, filtro);
         return new RespostaGenerica<>(CodigosResposta.CODIGO_200_SUCESSO, estudantes);
     }
+    
+    public static RespostaGenerica<Estudante> buscarPorRaESenha(String ra, String senha) {
+        Estudante estudante = dao.buscarPorRaESenha(ra,senha);
+        return new RespostaGenerica<>(CodigosResposta.CODIGO_200_SUCESSO, estudante);
+    }
 
     public static RespostaGenerica criar(Estudante estudante) {
         try {

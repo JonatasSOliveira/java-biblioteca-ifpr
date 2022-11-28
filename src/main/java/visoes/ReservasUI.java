@@ -37,7 +37,7 @@ public final class ReservasUI extends ListagemUI<Reserva> {
 
     @Override
     protected FormularioUI getTelaFormulario(Reserva reservaEdicao) {
-        return new ReservaFormUI();
+        return new ReservaFormUI(reservaEdicao);
     }
 
     @Override

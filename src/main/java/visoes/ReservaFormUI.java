@@ -1,17 +1,41 @@
 package visoes;
 
+import controles.ReservaControle;
 import javax.swing.JPanel;
+import modelos.Armario;
+import modelos.Reserva;
+import dao.ArmarioDAO;
+import modelos.Estudante;
+import servicos.ArmarioServico;
+import servicos.EstudanteServico;
 import visoescomponentes.FormularioUI;
 
 public class ReservaFormUI extends FormularioUI {
 
-    public ReservaFormUI() {
+    private final Reserva reservaEmEdicao;
+
+    public ReservaFormUI(Reserva reserva) {
         super();
+        initComponents();
+        super.iniciarComponentes();
+
+        if (reserva == null) {
+            this.reservaEmEdicao = new Reserva();
+            return;
+        }
+        this.inputArmario.setText(reserva.getArmario().getNumero());
+        this.inputRA1.setText(reserva.getEstudante().getRa());
+        this.reservaEmEdicao = reserva;
     }
 
     @Override
     protected JPanel getPanelForm() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.panelForm;
+    }
+
+    @Override
+    protected void salvar() {
+        ReservaControle.reservar(this.inputRA1.getText(), new String(this.inputSenha1.getPassword()), this.inputArmario.getText());
     }
 
     /**
@@ -23,26 +47,83 @@ public class ReservaFormUI extends FormularioUI {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelForm = new javax.swing.JPanel();
+        lbAramrio = new javax.swing.JLabel();
+        inputArmario = new javax.swing.JTextField();
+        lbRA1 = new javax.swing.JLabel();
+        inputRA1 = new javax.swing.JTextField();
+        lbSenha1 = new javax.swing.JLabel();
+        inputSenha1 = new javax.swing.JPasswordField();
+
+        lbAramrio.setText("Nome:");
+
+        lbRA1.setText("R.A.:");
+
+        lbSenha1.setText("Senha:");
+
+        javax.swing.GroupLayout panelFormLayout = new javax.swing.GroupLayout(panelForm);
+        panelForm.setLayout(panelFormLayout);
+        panelFormLayout.setHorizontalGroup(
+            panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFormLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lbAramrio)
+                    .addComponent(lbSenha1)
+                    .addComponent(inputArmario)
+                    .addComponent(lbRA1)
+                    .addComponent(inputRA1)
+                    .addComponent(inputSenha1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
+        );
+        panelFormLayout.setVerticalGroup(
+            panelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFormLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbAramrio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputArmario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lbRA1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputRA1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lbSenha1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputSenha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGap(0, 385, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(5, 5, 5)
+                    .addComponent(panelForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGap(0, 193, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(panelForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(13, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    @Override
-    protected void salvar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField inputArmario;
+    private javax.swing.JTextField inputRA1;
+    private javax.swing.JPasswordField inputSenha1;
+    private javax.swing.JLabel lbAramrio;
+    private javax.swing.JLabel lbRA1;
+    private javax.swing.JLabel lbSenha1;
+    private javax.swing.JPanel panelForm;
     // End of variables declaration//GEN-END:variables
 }
