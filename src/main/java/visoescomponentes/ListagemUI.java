@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.table.DefaultTableModel;
+import util.DialogUtil;
 
 public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
 
@@ -90,6 +91,7 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
         btnNovo = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         painelTabela = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         dataTable = new javax.swing.JTable();
@@ -125,6 +127,8 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setText("Filtro:");
+
         javax.swing.GroupLayout painelFiltrosLayout = new javax.swing.GroupLayout(painelFiltros);
         painelFiltros.setLayout(painelFiltrosLayout);
         painelFiltrosLayout.setHorizontalGroup(
@@ -137,18 +141,23 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscar))
                     .addGroup(painelFiltrosLayout.createSequentialGroup()
-                        .addComponent(btnNovo)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEditar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnExcluir)
+                        .addGroup(painelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelFiltrosLayout.createSequentialGroup()
+                                .addComponent(btnNovo)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnEditar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnExcluir))
+                            .addComponent(jLabel1))
                         .addGap(0, 145, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         painelFiltrosLayout.setVerticalGroup(
             painelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelFiltrosLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(12, 12, 12)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscar)
                     .addComponent(inputFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -204,20 +213,11 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         try {
             T entidadeSelecionada = this.getEntidadeSelecionada();
-            Object[] options = {"Não", "Sim"};
 
-            int opcaoSelecionada = JOptionPane.showOptionDialog(
-                    this,
-                    "Realmente deseja excluir o item selecionado?",
-                    "Atenção",
-                    JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.WARNING_MESSAGE,
-                    null,
-                    options,
-                    options[0]
+            boolean exclusaoConfirmada = DialogUtil.abrirModalConfirmacaoPadrao(
+                this,
+                "Realmente deseja excluir o item selecionado?"
             );
-
-            boolean exclusaoConfirmada = opcaoSelecionada == 1;
 
             if (exclusaoConfirmada) {
                 this.excluir(entidadeSelecionada);
@@ -236,6 +236,7 @@ public abstract class ListagemUI<T> extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnNovo;
     private javax.swing.JTable dataTable;
     private javax.swing.JTextField inputFiltro;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel painelFiltros;
     private javax.swing.JPanel painelTabela;

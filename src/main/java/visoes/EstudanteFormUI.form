@@ -72,13 +72,6 @@
                           </Group>
                           <EmptySpace pref="177" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -105,13 +98,6 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="inputTelefone" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -152,95 +138,6 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="inputTelefone">
                 </Component>
-                <Container class="javax.swing.JPanel" name="jPanel2">
-
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="lbNome1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbSenha1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbTelefone1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="inputNome1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="inputTelefone1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lbRA1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="inputRA1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lbEmail1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="inputEmail1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="inputSenha1" alignment="0" pref="200" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="177" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lbNome1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="inputNome1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lbRA1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="inputRA1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lbEmail1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="inputEmail1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="lbSenha1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="inputSenha1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lbTelefone1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="inputTelefone1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                    </DimensionLayout>
-                  </Layout>
-                  <SubComponents>
-                    <Component class="javax.swing.JLabel" name="lbNome1">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Nome:"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="inputNome1">
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="lbEmail1">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Email:"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="inputEmail1">
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="lbRA1">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="R.A.:"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="inputRA1">
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="lbSenha1">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Senha:"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JPasswordField" name="inputSenha1">
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="lbTelefone1">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Telefone"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="inputTelefone1">
-                    </Component>
-                  </SubComponents>
-                </Container>
               </SubComponents>
             </Container>
           </SubComponents>

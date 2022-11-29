@@ -10,6 +10,7 @@ import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import modelos.Bibliotecario;
 import sessao.SessaoBibliotecario;
+import util.DialogUtil;
 
 public class DesktopUI extends JFrame {
 
@@ -24,8 +25,15 @@ public class DesktopUI extends JFrame {
 
     private void verificarSessao() {
         Bibliotecario sessaoBibliotecario = SessaoBibliotecario.getBibliotecarioLogado();
-        boolean bibliotecarioEstaLogado = true; //sessaoBibliotecario != null;
+        boolean bibliotecarioEstaLogado = sessaoBibliotecario != null;
         this.menuBar.setVisible(bibliotecarioEstaLogado);
+        this.btnLogin.setVisible(!bibliotecarioEstaLogado);
+        
+        if (sessaoBibliotecario != null) {
+            this.lbNomeUsuario.setText("Usuário: " + sessaoBibliotecario.getNome());
+        } else {
+            this.lbNomeUsuario.setText("");
+        }
     }
 
     private static Coordenada getCentroTela(int larguraJanela, int alturaJanela) {
@@ -60,15 +68,19 @@ public class DesktopUI extends JFrame {
 
         desktopPane = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
-        devolverButton = new javax.swing.JButton();
-        emprestarButton = new javax.swing.JButton();
-        loginButton = new javax.swing.JButton();
+        btnDevolver = new javax.swing.JButton();
+        btnEmprestar = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
+        lbNomeUsuario = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menuCadastros = new javax.swing.JMenu();
         menuItemEstudantes = new javax.swing.JMenuItem();
         menuItemReservas = new javax.swing.JMenuItem();
         menuItemBibliotecarios = new javax.swing.JMenuItem();
-        menuItemBibliotecarios1 = new javax.swing.JMenuItem();
+        menuItemArmarios = new javax.swing.JMenuItem();
+        menuOpcoes = new javax.swing.JMenu();
+        menuItemSairConta = new javax.swing.JMenuItem();
+        menuItemSairSistema = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -85,48 +97,55 @@ public class DesktopUI extends JFrame {
             .addGap(0, 445, Short.MAX_VALUE)
         );
 
-        devolverButton.setText("DEVOLVER");
-        devolverButton.addActionListener(new java.awt.event.ActionListener() {
+        btnDevolver.setText("DEVOLVER");
+        btnDevolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                devolverButtonActionPerformed(evt);
+                btnDevolverActionPerformed(evt);
             }
         });
 
-        emprestarButton.setText("EMPRESTAR");
-        emprestarButton.addActionListener(new java.awt.event.ActionListener() {
+        btnEmprestar.setText("EMPRESTAR");
+        btnEmprestar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emprestarButtonActionPerformed(evt);
+                btnEmprestarActionPerformed(evt);
             }
         });
 
-        loginButton.setText("LOGIN");
-        loginButton.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setText("LOGIN");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
+
+        lbNomeUsuario.setText("Usuário: NomeUsuario");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(devolverButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(emprestarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDevolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEmprestar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lbNomeUsuario)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(emprestarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEmprestar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
-                .addComponent(devolverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbNomeUsuario)
                 .addContainerGap())
         );
 
@@ -156,15 +175,35 @@ public class DesktopUI extends JFrame {
         });
         menuCadastros.add(menuItemBibliotecarios);
 
-        menuItemBibliotecarios1.setText("Armarios");
-        menuItemBibliotecarios1.addActionListener(new java.awt.event.ActionListener() {
+        menuItemArmarios.setText("Armarios");
+        menuItemArmarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemBibliotecarios1ActionPerformed(evt);
+                menuItemArmariosActionPerformed(evt);
             }
         });
-        menuCadastros.add(menuItemBibliotecarios1);
+        menuCadastros.add(menuItemArmarios);
 
         menuBar.add(menuCadastros);
+
+        menuOpcoes.setText("Opções");
+
+        menuItemSairConta.setText("Sair da Conta");
+        menuItemSairConta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemSairContaActionPerformed(evt);
+            }
+        });
+        menuOpcoes.add(menuItemSairConta);
+
+        menuItemSairSistema.setText("Encerrar Sistema");
+        menuItemSairSistema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemSairSistemaActionPerformed(evt);
+            }
+        });
+        menuOpcoes.add(menuItemSairSistema);
+
+        menuBar.add(menuOpcoes);
 
         setJMenuBar(menuBar);
 
@@ -186,17 +225,17 @@ public class DesktopUI extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void devolverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devolverButtonActionPerformed
+    private void btnDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolverActionPerformed
         this.iniciarInternalFrame(new DevolucaoUI());
-    }//GEN-LAST:event_devolverButtonActionPerformed
+    }//GEN-LAST:event_btnDevolverActionPerformed
 
-    private void emprestarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emprestarButtonActionPerformed
+    private void btnEmprestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmprestarActionPerformed
         this.iniciarInternalFrame(new EmprestimoUI());
-    }//GEN-LAST:event_emprestarButtonActionPerformed
+    }//GEN-LAST:event_btnEmprestarActionPerformed
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         this.iniciarInternalFrame(new LoginUI());
-    }//GEN-LAST:event_loginButtonActionPerformed
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     private void menuItemEstudantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEstudantesActionPerformed
         this.iniciarInternalFrame(new EstudantesUI());
@@ -210,21 +249,48 @@ public class DesktopUI extends JFrame {
         this.iniciarInternalFrame(new BibliotecariosUI());
     }//GEN-LAST:event_menuItemBibliotecariosActionPerformed
 
-    private void menuItemBibliotecarios1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemBibliotecarios1ActionPerformed
+    private void menuItemArmariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemArmariosActionPerformed
         this.iniciarInternalFrame(new ArmariosUI());
-    }//GEN-LAST:event_menuItemBibliotecarios1ActionPerformed
+    }//GEN-LAST:event_menuItemArmariosActionPerformed
+
+    private void menuItemSairContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSairContaActionPerformed
+         boolean saidaConfirmada = DialogUtil.abrirModalConfirmacaoPadrao(
+            this,
+            "Realmente deseja sair da conta?"
+        );
+         
+        if (saidaConfirmada){
+            SessaoBibliotecario.setBibliotecarioLogado(null);            
+            this.verificarSessao();
+        }
+    }//GEN-LAST:event_menuItemSairContaActionPerformed
+
+    private void menuItemSairSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSairSistemaActionPerformed
+        boolean encerramentoConfirmado = DialogUtil.abrirModalConfirmacaoPadrao(
+            this,
+            "Realmente deseja encerrar o sistema?"
+        );
+        
+        if (encerramentoConfirmado) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_menuItemSairSistemaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDevolver;
+    private javax.swing.JButton btnEmprestar;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JButton devolverButton;
-    private javax.swing.JButton emprestarButton;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton loginButton;
+    private javax.swing.JLabel lbNomeUsuario;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuCadastros;
+    private javax.swing.JMenuItem menuItemArmarios;
     private javax.swing.JMenuItem menuItemBibliotecarios;
-    private javax.swing.JMenuItem menuItemBibliotecarios1;
     private javax.swing.JMenuItem menuItemEstudantes;
     private javax.swing.JMenuItem menuItemReservas;
+    private javax.swing.JMenuItem menuItemSairConta;
+    private javax.swing.JMenuItem menuItemSairSistema;
+    private javax.swing.JMenu menuOpcoes;
     // End of variables declaration//GEN-END:variables
 }

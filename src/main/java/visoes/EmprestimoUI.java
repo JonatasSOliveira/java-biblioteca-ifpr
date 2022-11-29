@@ -43,22 +43,12 @@ public class EmprestimoUI extends javax.swing.JInternalFrame {
         senhaLabel.setText("Senha");
 
         senhaInput.setToolTipText("");
-        senhaInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                senhaInputActionPerformed(evt);
-            }
-        });
 
         nArmarioLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         nArmarioLabel.setText("Nº Armario:");
 
         nArmarioInput.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         nArmarioInput.setToolTipText("");
-        nArmarioInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nArmarioInputActionPerformed(evt);
-            }
-        });
 
         btnCancel.setBackground(new java.awt.Color(255, 0, 0));
         btnCancel.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
@@ -154,10 +144,6 @@ public class EmprestimoUI extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(null, resposta.getMensagem());
     }//GEN-LAST:event_btnEmprestarActionPerformed
 
-    private void senhaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_senhaInputActionPerformed
-
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         try {
             this.setClosed(true);
@@ -165,10 +151,6 @@ public class EmprestimoUI extends javax.swing.JInternalFrame {
             Logger.getLogger(EmprestimoUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnCancelActionPerformed
-
-    private void nArmarioInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nArmarioInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nArmarioInputActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
