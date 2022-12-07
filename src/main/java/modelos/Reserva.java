@@ -21,7 +21,7 @@ public class Reserva {
 
     @Column(name = "data_hora_devolucao")
     private Date dataHoraDevolucao;
-    
+
     @Column(name = "data_criacao", nullable = false)
     @CreationTimestamp
     private Date dataCriacao;

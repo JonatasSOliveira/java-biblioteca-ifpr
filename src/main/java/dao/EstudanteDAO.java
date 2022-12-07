@@ -1,89 +1,39 @@
 package dao;
 
-import java.util.List;
-
 import modelos.Estudante;
 
 public class EstudanteDAO extends GenericoDAO<Estudante> {
+
     public EstudanteDAO() {
         super();
     }
 
     @Override
-    public List<Estudante> buscarTodos() {
-        List<Estudante> estudantes = null;
-
-        try {
-            getSessao().beginTransaction();
-            estudantes = (List<Estudante>) getSessao().createQuery("from Estudante").list();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
-
-        return estudantes;
+    protected String getNomeModelo() {
+        return "Estudante";
     }
 
     @Override
-    public Estudante buscarPorId(Long id) {
+    public Class<Estudante> getClasseModelo() {
+        return Estudante.class;
+    }
+
+    @Override
+    protected String[] getFiltrosPadrao() {
+        return new String[]{"nome"};
+    }
+
+    public Estudante buscarPorRaESenha(String ra, String senha) {
         Estudante estudante = null;
+        String query = "SELECT etd FROM Estudante etd "
+                + "WHERE etd.ra = :ra and etd.senha = MD5(:senha)";
 
         try {
             getSessao().beginTransaction();
-            estudante = (Estudante) getSessao().get(Estudante.class, id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
-
-        return estudante;
-    }
-
-
-    @Override
-    public void criar(Estudante modelo) {
-        try {
-            getSessao().beginTransaction();
-            getSessao().persist(modelo);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
-    }
-
-    @Override
-    public void atualizar(Estudante modelo) {
-        try {
-            getSessao().beginTransaction();
-            getSessao().update(modelo);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
-    }
-
-    @Override
-    public void excluir(Estudante modelo) {
-        try {
-            getSessao().beginTransaction();
-            getSessao().delete(modelo);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
-    }
-
-    public Estudante autenticarEstudante(String ra, String senha) {
-        Estudante estudante = null;
-
-        try {
-            getSessao().beginTransaction();
-            estudante = (Estudante) getSessao().createQuery("SELECT etd FROM Estudante etd WHERE etd.ra=:ra and etd.senha=:senha").setParameter("ra", ra).setParameter("senha", senha).getSingleResult();
+            estudante = getSessao().createQuery(query, Estudante.class)
+                    .setParameter("ra", ra)
+                    .setParameter("senha", senha)
+                    .getSingleResult();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

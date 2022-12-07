@@ -1,22 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package visoes;
 
-import controles.DevolucaoControler;
+import controles.ReservaControle;
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelos.Reserva;
+import respostas.RespostaGenerica;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author user
- */
 public class DevolucaoUI extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form DevolucaoUI
-     */
     public DevolucaoUI() {
         initComponents();
     }
@@ -35,6 +29,10 @@ public class DevolucaoUI extends javax.swing.JInternalFrame {
         nArmarioInput = new javax.swing.JTextField();
         btnCancel = new javax.swing.JButton();
         btnAcessar = new javax.swing.JButton();
+        raLabel = new javax.swing.JLabel();
+        raInput = new javax.swing.JTextField();
+        senhaLabel = new javax.swing.JLabel();
+        senhaInput = new javax.swing.JPasswordField();
 
         setTitle("Devolução");
 
@@ -71,13 +69,29 @@ public class DevolucaoUI extends javax.swing.JInternalFrame {
             }
         });
 
+        raLabel.setText("RA");
+
+        raInput.setToolTipText("");
+
+        senhaLabel.setText("Senha");
+
+        senhaInput.setToolTipText("");
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
+                .addContainerGap(42, Short.MAX_VALUE)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(raLabel)
+                            .addComponent(raInput, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(senhaLabel)
+                            .addComponent(senhaInput, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelLayout.createSequentialGroup()
                         .addComponent(nArmarioLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -86,12 +100,22 @@ public class DevolucaoUI extends javax.swing.JInternalFrame {
                         .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(btnAcessar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(24, 24, 24))
+                .addGap(25, 25, 25))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                .addContainerGap(49, Short.MAX_VALUE)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addComponent(raLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(raInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addComponent(senhaLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(senhaInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nArmarioLabel)
                     .addComponent(nArmarioInput, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -99,7 +123,7 @@ public class DevolucaoUI extends javax.swing.JInternalFrame {
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAcessar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(40, 40, 40))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -110,7 +134,9 @@ public class DevolucaoUI extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -121,20 +147,20 @@ public class DevolucaoUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_nArmarioInputActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        InicioUI inicioUI = new InicioUI();
-        inicioUI.setVisible(true);
-        this.setVisible(false);
+        try {
+            this.setClosed(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(DevolucaoUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessarActionPerformed
-        String nArmario = nArmarioInput.getText();
+        String ra = raInput.getText();
+        String senha = new String(senhaInput.getPassword());
+        String numeroArmario = nArmarioInput.getText();
 
-        int devolucao = DevolucaoControler.devolver(nArmario);
-        switch (devolucao) {
-            case DevolucaoControler.COD_ARMARIO_JA_DEVOLVIDO -> JOptionPane.showMessageDialog(null, "Armario já devolvido!");
-            case DevolucaoControler.COD_ARMARIO_INEXISTENTE -> JOptionPane.showMessageDialog(null, "Armario Inexistente ou não encontrado, caso realmente exista contate a secretaria");
-            case DevolucaoControler.COD_DEVOLVIDO_COM_SUCESSO -> JOptionPane.showMessageDialog(null, "Armario devolvido!");
-        }
+        RespostaGenerica<Reserva> resposta = ReservaControle.devolver(ra, senha, numeroArmario);
+        JOptionPane.showMessageDialog(null, resposta.getMensagem());
     }//GEN-LAST:event_btnAcessarActionPerformed
 
 
@@ -144,5 +170,9 @@ public class DevolucaoUI extends javax.swing.JInternalFrame {
     private javax.swing.JTextField nArmarioInput;
     private javax.swing.JLabel nArmarioLabel;
     private javax.swing.JPanel panel;
+    private javax.swing.JTextField raInput;
+    private javax.swing.JLabel raLabel;
+    private javax.swing.JPasswordField senhaInput;
+    private javax.swing.JLabel senhaLabel;
     // End of variables declaration//GEN-END:variables
 }

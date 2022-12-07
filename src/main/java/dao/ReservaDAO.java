@@ -1,93 +1,45 @@
 package dao;
 
-import java.util.List;
-
 import modelos.Armario;
 import modelos.Estudante;
 import modelos.Reserva;
 
 public class ReservaDAO extends GenericoDAO<Reserva> {
+
     public ReservaDAO() {
         super();
     }
 
     @Override
-    public List<Reserva> buscarTodos() {
-        List<Reserva> reservas = null;
+    protected String getNomeModelo() {
+        return "Reserva";
 
-        try {
-            getSessao().beginTransaction();
-            reservas = (List<Reserva>) getSessao().createQuery("from Reserva").list();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
-
-        return reservas;
     }
 
     @Override
-    public Reserva buscarPorId(Long id) {
-        Reserva reserva = null;
-
-        try {
-            getSessao().beginTransaction();
-            reserva = (Reserva) getSessao().get(Reserva.class, id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
-
-        return reserva;
+    public Class<Reserva> getClasseModelo() {
+        return Reserva.class;
     }
 
     @Override
-    public void criar(Reserva reserva) {
-        try {
-            getSessao().beginTransaction();
-            getSessao().persist(reserva);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
-    }
-
-    @Override
-    public void atualizar(Reserva reserva) {
-        try {
-            getSessao().beginTransaction();
-            getSessao().update(reserva);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
-    }
-
-    @Override
-    public void excluir(Reserva reserva) {
-        try {
-            getSessao().beginTransaction();
-            getSessao().delete(reserva);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getSessao().getTransaction().commit();
-        }
+    protected String[] getFiltrosPadrao() {
+        return new String[]{};
     }
 
     public Reserva buscarPorArmarioEDevolucaoIsNull(String numeroArmario) {
         Reserva reserva = null;
+        String queryReserva = "SELECT arm FROM Armario arm "
+                + "WHERE arm.numero=:numeroArmario";
+        String queryArmario = "SELECT r FROM Reserva r "
+                + "WHERE r.armario=:armario and r.dataHoraDevolucao is null";
+
         try {
             getSessao().beginTransaction();
-            Armario armario = (Armario) getSessao().createQuery("SELECT arm FROM Armario arm WHERE arm.numero=:numeroArmario")
+            Armario armario = getSessao()
+                    .createQuery(queryReserva, Armario.class)
                     .setParameter("numeroArmario", numeroArmario)
                     .getSingleResult();
-            reserva = (Reserva) getSessao().createQuery("SELECT r FROM Reserva r WHERE r.armario=:armario and r.dataHoraDevolucao is null")
+            reserva = getSessao().createQuery(queryArmario, Reserva.class)
                     .setParameter("armario", armario)
                     .getSingleResult();
 
