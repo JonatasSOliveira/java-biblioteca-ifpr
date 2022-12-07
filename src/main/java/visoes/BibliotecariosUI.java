@@ -32,7 +32,7 @@ public final class BibliotecariosUI extends ListagemUI<Bibliotecario> {
 
     @Override
     protected String[] getLinha(Bibliotecario bibliotecario) {
-        return new String[]{bibliotecario.getNome(), bibliotecario.getLogin(), bibliotecario.getNome()};
+        return new String[]{bibliotecario.getSiape(), bibliotecario.getLogin(), bibliotecario.getNome()};
     }
 
     @Override

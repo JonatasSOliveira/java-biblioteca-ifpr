@@ -26,7 +26,7 @@ public class EstudanteDAO extends GenericoDAO<Estudante> {
     public Estudante buscarPorRaESenha(String ra, String senha) {
         Estudante estudante = null;
         String query = "SELECT etd FROM Estudante etd "
-                + "WHERE etd.ra=:ra and etd.senha=:senha";
+                + "WHERE etd.ra = :ra and etd.senha = MD5(:senha)";
 
         try {
             getSessao().beginTransaction();

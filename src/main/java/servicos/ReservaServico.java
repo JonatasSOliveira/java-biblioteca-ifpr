@@ -1,6 +1,7 @@
 package servicos;
 
 import dao.ReservaDAO;
+import java.util.Date;
 import java.util.List;
 import modelos.Armario;
 import modelos.Estudante;
@@ -59,7 +60,36 @@ public class ReservaServico {
     }
 
     public static RespostaGenerica<Reserva> devolver(String ra, String senha, String numeroArmario) {
-        return new RespostaGenerica<>(CodigosResposta.CODIGO_500_ERRO_INTERNO);
+        try {
+            RespostaGenerica<Estudante> respostaEstudante = EstudanteServico.autenticar(ra, senha);
+            Estudante estudante = respostaEstudante.getData();
+
+            if (estudante == null) {
+                return new RespostaGenerica<>(CodigosResposta.CODIGO_401_NAO_AUTORIZADO,
+                        "Estudante não autenticado");
+            }
+
+            RespostaGenerica<Armario> respostaArmario = ArmarioServico.buscarPorNumero(numeroArmario);
+            Armario armario = respostaArmario.getData();
+
+            if (armario == null) {
+                return new RespostaGenerica<>(CodigosResposta.CODIGO_400_MAL_FORMULADO,
+                        "Armário não encontrado");
+            }
+
+            Reserva reservaPendente = dao.buscarPorEstudanteEDevolucaoNull(estudante);
+            
+            if (reservaPendente == null) {
+                return new RespostaGenerica<>(CodigosResposta.CODIGO_409_CONFLITO, "Reserva não encontrada");
+            }
+            
+            reservaPendente.setDataHoraDevolucao(new Date());
+            
+            return new RespostaGenerica<>(CodigosResposta.CODIGO_200_SUCESSO,
+                    "Devolvido com sucesso");
+        } catch (Exception e) {
+            return new RespostaGenerica<>(CodigosResposta.CODIGO_500_ERRO_INTERNO);
+        }
     }
 
     public static RespostaGenerica<List<Reserva>> buscarPaginavelPorFiltro(int pagina, String filtro) {
